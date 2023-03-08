@@ -2,6 +2,9 @@
 
 ## API Documentation
 
+## DATABASE Schema
+![Schema](<iframe width="560" height="315" src='https://dbdiagram.io/embed/63fff02d296d97641d84c5f0'> </iframe>)
+
 ## USER AUTHENTICATION/AUTHORIZATION
 
 ### All endpoints that require authentication
