@@ -1,9 +1,9 @@
 # AirBnB-clone
 
-## API Documentation
-
 ## DATABASE Schema
-![Schema](<iframe width="560" height="315" src='https://dbdiagram.io/embed/63fff02d296d97641d84c5f0'> </iframe>)
+![Schema](https://dbdiagram.io/d/63fff02d296d97641d84c5f0)
+
+## API Documentation
 
 ## USER AUTHENTICATION/AUTHORIZATION
 
