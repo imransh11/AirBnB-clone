@@ -3,7 +3,7 @@
 ## API Documentation
 
 ## DATABASE SCHEMA
-![lookup with index](https://dbdiagram.io/d/63fff02d296d97641d84c5f0)
+![SCHEMA](https://dbdiagram.io/d/63fff02d296d97641d84c5f0)
 
 ## USER AUTHENTICATION/AUTHORIZATION
 
