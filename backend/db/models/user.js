@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     }
     validatePassword(password) {
       return bcrypt.compareSync(password, this.hashedPassword.toString());
-    }
+    } // merge
     static async login({ credential, password }) {
       const { Op } = require('sequelize');
       const user = await User.scope('loginUser').findOne({
