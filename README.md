@@ -1,7 +1,7 @@
 # AirBnB-clone
 
 ## DATABASE Schema
-![Schema](Screenshot 2023-03-08 182237.png)
+![Schema](./Screenshot 2023-03-08 182237.png)
 
 ## API Documentation
 
