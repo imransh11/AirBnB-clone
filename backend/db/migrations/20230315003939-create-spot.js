@@ -20,9 +20,9 @@ module.exports = {
         type: Sequelize.INTEGER,
         references: {
           model: 'Users',
-          key: 'id'
+          // key: 'id'
         },
-        onDelete: 'cascade'
+        onDelete: 'CASCADE'
       },
       address: {
         type: Sequelize.STRING
@@ -61,10 +61,10 @@ module.exports = {
         type: Sequelize.DATE,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
       }
-    });
+    }, options);
   },
   async down(queryInterface, Sequelize) {
-    options.tableName = "Users";
+    options.tableName = "Spots";
     return queryInterface.dropTable(options);
   }
 };
