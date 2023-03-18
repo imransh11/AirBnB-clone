@@ -41,7 +41,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       User.hasMany(
-        models.Spots,
+        models.Spot,
           { foreignKey: 'ownerId', onDelete: 'CASCADE',  hooks: true }
       );
       User.hasMany(
