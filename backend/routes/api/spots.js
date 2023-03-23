@@ -1,7 +1,7 @@
 const express = require('express')
 
 const { setTokenCookie, restoreUser } = require('../../utils/auth');
-const {Spot, Review, SpotImage, User} = require('../../db/models')
+const {Spot, Review, SpotImage, User, ReviewImage} = require('../../db/models')
 
 const router = express.Router()
 const {Op, sequelize, fn, literal} = require("sequelize")
@@ -408,4 +408,96 @@ router.post('/:spotId/images',
           })
     })
 
-module.exports = router
+
+    //Create a Review for a Spot based on the Spot's id
+    router.post('/:spotId/reviews',
+    restoreUser,
+    async (req, res) => {
+        const spotId = parseInt(req.params.spotId) //
+        const {review, stars} = req.body
+        const userId = req.user.dataValues.id
+        // console.log(spotId, review, stars, userId, 'test----------------------')
+
+        const spot = await Spot.findOne({
+            where: {id: spotId}
+        })
+
+        //Error response: Couldn't find a Spot with the specified id
+        if(!spot){
+            return res.status(404).json({
+                "message": "Spot couldn't be found",
+                "statusCode": 404
+            })
+        }
+
+        //Error response: Review from the current user already exists for the Spot
+        const currReviews = await Review.findAll({
+            where: {spotId: spotId}
+        })
+        // console.log(currReviews, 'test---------------------')
+        currReviews.forEach( ele => {
+            const user = ele.dataValues.userId;
+            // console.log(user, 'test---------------------')
+            if(userId === user){
+                return res.status(404).json({
+                    "message": "User already has a review for this spot",
+                    "statusCode": 403
+                })
+            }
+        })
+
+        const rev = await Review.create({
+            spotId, userId, review, stars
+        })
+
+        res.status(201).json(rev)
+
+    })
+
+
+    //Get all Reviews by a Spot's id
+    router.get('/:spotId/reviews',
+    async (req, res) => {
+        const obj = { "Reviews": []}
+        const spotId = req.params.spotId;
+        // console.log(spotId, 'test-----------------')
+
+        const rev = await Review.findAll({      //rev (Array)
+            where: {spotId: spotId},
+            include: [User, ReviewImage]
+        })
+        // console.log(rev, 'rev-----------------------------')
+
+        rev.forEach(ele => {
+            // console.log(ele.dataValues.User.dataValues.username, 'ele---------------------')
+            // console.log(ele.dataValues.ReviewImages, 'ele---------------------')
+
+            //
+            let revImg = ele.dataValues.ReviewImages
+            // console.log(revImg, 'revImg---------------------')
+            revImg.forEach( ele1 => {
+                console.log(ele1.dataValues.updatedAt, 'ele1--------------')
+                delete ele1.dataValues.reviewId  //delete reviewId
+                delete ele1.dataValues.createdAt  //delete createdAt
+                delete ele1.dataValues.updatedAt  //delete updatedAt
+
+            })
+
+            //delete username form user
+            delete ele.dataValues.User.dataValues.username
+
+            obj.Reviews.push(ele.dataValues)
+        })
+
+        //Error response: Couldn't find a Spot with the specified id
+        if(!rev.length){
+            return res.status(404).json({
+                "message": "Spot couldn't be found",
+                "statusCode": 404
+            })
+        }
+
+        res.status(200).json(obj)
+    })
+
+module.exports = router;
