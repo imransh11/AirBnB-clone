@@ -159,13 +159,60 @@ router.delete('/:bookingId',
 restoreUser,
 async (req, res) => {
     const user = req.user.dataValues.id;
-    const id = req.params.bookingId;
-    // console.log(user, id, 'user----------')
+    const id = parseInt(req.params.bookingId);
+    console.log(user, id, 'user----------')
 
     const booking = await Booking.findOne({
+        where: {id: id},
+        include: [Spot]
+    })
+    // console.log(booking.dataValues.userId,
+    //     booking.Spot.dataValues.ownerId, 'booking---------------')
+
+    //Error response: Couldn't find a Booking with the specified id
+    if(!booking){
+        return res.status(404).json({
+            "message": "Booking couldn't be found",
+            "statusCode": 404
+    })
+    }
+
+    //Require proper authorization: Booking must belong to the current user
+    //or the Spot must belong to the current user
+    const userId = booking.dataValues.userId;
+    const ownerId = booking.Spot.dataValues.ownerId;
+    const startTimeinMil = booking.dataValues.startDate.getTime()
+    const endTimeinMil = booking.dataValues.endDate.getTime()
+    console.log(userId, ownerId, 'user/owner-----------------')
+
+    if(user !== userId && user !== ownerId){
+        return res.status(404).json({
+            "message": "Require proper authorization from Spot Owner or User that booked",
+            "statusCode": 404
+    })
+    }
+
+    //Error response: Bookings that have been started can't be deleted
+    const today = new Date;
+    const todayInMil = today.getTime()
+    console.log(startTimeinMil, endTimeinMil, todayInMil, 'start---------------------')
+
+    if(startTimeinMil < todayInMil){
+        return res.status(403).json({
+            "message": "Bookings that have been started can't be deleted",
+            "statusCode": 403
+        })
+    }
+
+    await Booking.destroy({
         where: {id: id}
     })
-    console.log(booking, 'booking---------------')
+
+    res.status(200).json({
+        "message": "Successfully deleted",
+        "statusCode": 200
+    })
+
 })
 
 module.exports = router;
