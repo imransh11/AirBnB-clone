@@ -17,11 +17,50 @@ async (req, res) => {
 
     const rev = await Review.findAll({
         where: {userId: user},
-        include: [Spot, ReviewImage]
+        include: [Spot, ReviewImage, User]
     })
-    console.log(rev, 'review------------')
+    // console.log(rev, 'review------------')
+
+    const revImg = await SpotImage.findAll({})
+    // console.log(revImg, 'img-----------------')
+
+    const obj = { "Reviews": []}
 
 
+
+    rev.forEach( ele => {
+        const key = "previewImage";
+        // console.log(ele, 'eleID--------------')
+        // console.log(ele.Spot.dataValues.id, 'ele===========') //+ previewImage -crated
+        // console.log(ele.ReviewImages, 'ele------------------') //-revId - created
+        const img = []
+
+        revImg.forEach(ele2 =>{  //ReviewImage
+            // console.log(ele2.dataValues.spotId, 'ele2-----------')
+            // console.log(ele2.dataValues.url, 'ele2-----------') //.preview
+            if(ele.Spot.dataValues.id = ele2.dataValues.spotId){
+                img.push(ele2.dataValues.url)
+            }
+        })
+        // console.log(img, 'spot---------------------')
+        ele.Spot.dataValues[key] = img[0]
+
+        ele.ReviewImages.forEach(ele3 => {
+            // console.log(ele3, 'ele3---------------------')
+
+            delete ele3.dataValues.reviewId
+            delete ele3.dataValues.updatedAt
+            delete ele3.dataValues.createdAt
+        })
+
+        delete ele.Spot.dataValues.createdAt
+        delete ele.Spot.dataValues.updatedAt
+        delete ele.User.dataValues.username
+
+        obj.Reviews.push(ele)
+    })
+
+    res.status(200).json(obj)
 })
 
 
@@ -45,6 +84,20 @@ async (req, res) => {
         })
     }
 
+    //Error response: Cannot add any more images because
+    //there is a maximum of 10 images per resource
+
+    const img = await ReviewImage.findAll({
+        where: {reviewId: reviewId}
+    })
+    // console.log(img.length, 'img------------------------')
+
+    if(img.length >= 10){
+        return res.status(403).json({
+            "message": "Maximum number of images for this resource was reached",
+            "statusCode": 403
+        })
+    }
 
     const review = await ReviewImage.create({
         reviewId, url
@@ -72,7 +125,7 @@ async (req, res) => {
     const revToUpdate = await Review.findOne({
         where: {id: reviewId}
     })
-    console.log(revToUpdate, 'revToUpdate=====================')
+    // console.log(revToUpdate, 'revToUpdate=====================')
 
 
     //Error response: Couldn't find a Review with the specified id

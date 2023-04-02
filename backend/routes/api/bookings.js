@@ -16,7 +16,7 @@ async (req, res) => {
     // console.log(userId, 'user---------------------')
 
     const bookings = await Booking.findAll({
-        where: {id: 2},          //change id==========================
+        where: {id: userId},          //change id==========================
         include: [Spot]
     })
 
@@ -68,7 +68,7 @@ async (req, res) => {
     const start = new Date (startDate).getTime();  //not sure
     const end = new Date (endDate).getTime();  // not sure
     const user = req.user.dataValues.id
-    console.log(id, start, end, 'test-------------------------')
+    // console.log(id, start, end, 'test-------------------------')
     // console.log(user, 'user-----------------')
 
     const booking = await Booking.findOne({
@@ -108,7 +108,7 @@ async (req, res) => {
     //Error response: Can't edit a booking that's past the end date
     const today = new Date()
     const todayInMil = today.getTime()
-    console.log(todayInMil, 'today------------------------')
+    // console.log(todayInMil, 'today------------------------')
 
     if(todayInMil > end){
         return res.status(403).json({
@@ -124,7 +124,7 @@ async (req, res) => {
         // console.log(bookinglist[i].dataValues.startDate)
         let startlist = new Date (bookinglist[i].dataValues.startDate).getTime();
         let endlist = new Date (bookinglist[i].dataValues.endDate).getTime();
-        console.log(startlist, endlist)
+        // console.log(startlist, endlist)
 
         if(spotId === bookinglist[i].dataValues.spotId){
             if(startlist === start|| endlist === end){
@@ -160,7 +160,7 @@ restoreUser,
 async (req, res) => {
     const user = req.user.dataValues.id;
     const id = parseInt(req.params.bookingId);
-    console.log(user, id, 'user----------')
+    // console.log(user, id, 'user----------')
 
     const booking = await Booking.findOne({
         where: {id: id},
@@ -183,19 +183,19 @@ async (req, res) => {
     const ownerId = booking.Spot.dataValues.ownerId;
     const startTimeinMil = booking.dataValues.startDate.getTime()
     const endTimeinMil = booking.dataValues.endDate.getTime()
-    console.log(userId, ownerId, 'user/owner-----------------')
+    // console.log(userId, ownerId, 'user/owner-----------------')
 
     if(user !== userId && user !== ownerId){
-        return res.status(404).json({
+        return res.status(403).json({
             "message": "Require proper authorization from Spot Owner or User that booked",
-            "statusCode": 404
+            "statusCode": 403
     })
     }
 
     //Error response: Bookings that have been started can't be deleted
     const today = new Date;
     const todayInMil = today.getTime()
-    console.log(startTimeinMil, endTimeinMil, todayInMil, 'start---------------------')
+    // console.log(startTimeinMil, endTimeinMil, todayInMil, 'start---------------------')
 
     if(startTimeinMil < todayInMil){
         return res.status(403).json({

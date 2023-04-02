@@ -7,6 +7,8 @@ const router = express.Router()
 const {Op, sequelize, fn, literal} = require("sequelize");
 const booking = require('../../db/models/booking');
 
+
+//Get all Spots
 router.get('/', async (req, res) => {
     // console.log('in the route', Spot)
     let obj = { "Spots": []}
@@ -23,65 +25,49 @@ router.get('/', async (req, res) => {
         pagination.limit = size;
         pagination.offset = size * (page-1)
     }
-    console.log(pagination, '-------------------')
+    // console.log(pagination, '-------------------')
 
-    
+
     const spot = await Spot.findAll({
         include: [SpotImage, Review],
 
         ...pagination
     })
 
-    // const rev = await Review.count({
-    //     // where: {
-    //     //     spotId: {
-    //     //         [Op.eq]: 1
-    //     //     }
-    //     // }
-    //     // console.log(rev, 'rev---------------------')
-    // })
-
-    // const avg = await Review.findAll({
-    //     attributes:{
-    //         include: [
-    //             [
-    //                 sequelize.fn("AVG", sequelize.col("stars")),
-    //                 "avgAll"
-    //             ]
-    //         ]
-    //     }
-    // });
-
-    // console.log(avg, 'avg----------------------')
-
     spot.forEach(ele => {
-        let key = "previewImage"
-        let key1 = "avgRating"
+        let key = "previewImage";
+        let key1 = "avgRating";
         // console.log('spotttttttttt', ele.dataValues.SpotImages)
         // console.log('stars--------', ele.dataValues.Reviews)
         // review
-        // console.log('spotttttttttt', ele.Reviews)
+        // console.log('spotttttttttt', ele)
 
         //image url for each
         let rev = ele.dataValues.SpotImages
         let sta = ele.dataValues.Reviews
         rev.forEach(ele1 => {
             // ele.dataValues[key] = "image url"
-            ele.dataValues[key] = ele1.dataValues.url
-            // console.log(ele1.dataValues.url, 'eleeeeeeeee---------')
+            if(ele1.dataValues.preview){
+                ele.dataValues[key] = ele1.dataValues.url
+            }
+            // console.log(ele1.dataValues.preview, 'eleeeeeeeee---------')
         })
 
         // const size = sta.count()
         // console.log(size, 'size-----------------')
 
-
+        let sum = 0;
+        let count = 0;
         sta.forEach(ele2 => {
-            // console.log(ele2.toJSON(), 'ele2----------------')
-            // const size = ele2.count()
+            // console.log(ele2.dataValues.stars, 'ele2--------------------------')
+            sum+= ele2.dataValues.stars;
+            count++;
         })
 
         //delet SpotImages/Reviews
         // console.log(ele.dataValues, 'test----------------')
+        // console.log(sum, count, 'test--------------------')
+        ele.dataValues[key1] = sum/count
 
         delete ele.dataValues.SpotImages
         delete ele.dataValues.Reviews
@@ -93,31 +79,7 @@ router.get('/', async (req, res) => {
 
     // console.log('finallllllllllllll', obj)
 
-
-    const image = await SpotImage.findAll({
-        attributes: ['url']
-    })
-
-    // console.log(image, 'url--------------')
-    // let jspot = spot.foreach( arr => {
-    //     arr.toJSON()
-    // })
-
-    // let jspot = spot.toJSON()
-    // let first = spot[0]
-    // console.log('testtttttt', first.dataValues.Reviews)
-
-    // rev.forEach(element => {
-    //     console.log(element.dataValues.stars, '--------------')
-    // });
-
-    // console.log(rev, 'RAtingggg')
-    // console.log(jspot, '--------------------json')
-    // image.forEach(ele => {
-    //     console.log(ele.toJSON(), "-------")
-    // })
-
-    return res.json(obj)
+    return res.status(200).json(obj)
 }
 )
 
@@ -143,18 +105,29 @@ async (req, res) => {
     userSpot.forEach( ele => {          //spot
         // console.log(ele.dataValues, 'ele----------------------')
         const imageArr = []
-        let key = "previewImage"
+        let key = "previewImage";
+        let key1 = "avgRating"
 
         //get imgurl
 
         let spotImg = ele.dataValues.SpotImages
-        // console.log(spotImg, 'spotImg-------------------------')
+        const rev = ele.dataValues.Reviews
+        // console.log(rev, 'spotImg-------------------------')
         // console.log(spotImg[0].dataValues.url, 'images-------------------');
         // imageArr.push(spotImg[0].dataValues.url)
 
+        let sum = 0;
+        let count = 0;
+        rev.forEach(ele2 => {
+            // console.log(ele2.dataValues.stars, 'ele------------------')
+            sum+= ele2.dataValues.stars;
+            count++;
+        })
+        // console.log(sum, count, 'ele2------------------')
+        ele.dataValues[key1] = sum/count
 
         spotImg.forEach(ele1 => {       //image(s) for each spot
-                // console.log(ele1.dataValues.url, 'ele-------------------')
+                console.log(ele1.dataValues, 'ele-------------------')
                 imageArr.push(ele1.dataValues.url)
 
 
@@ -171,8 +144,9 @@ async (req, res) => {
 
             //delet SpotImages
             delete ele.dataValues.SpotImages
+            delete  ele.dataValues.Reviews
 
-            console.log(ele.dataValues, "after-----------------------")
+            // console.log(ele.dataValues, "after-----------------------")
             obj.Spots.push(ele.dataValues)
         })
 
@@ -192,7 +166,9 @@ async (req, res) => {
 
 
 //spot from spot id
-router.get('/:spotId', async (req, res) => {
+router.get('/:spotId',
+restoreUser,
+async (req, res) => {
     let inputId = req.params.spotId
 
     // let final =
@@ -277,7 +253,7 @@ router.post('/',
 
         const {address, city, state, country, lat, lng, name, description, price} = req.body;
         // console.log(req.user.dataValues.id)
-        console.log(req.body, '-----------------')
+        // console.log(req.body, '-----------------')
 
         //error
         // if()
@@ -295,6 +271,7 @@ router.post('/',
         res.status(201).json(newSpot)
 })
 
+//Add an Image to a Spot based on the Spot's id
 router.post('/:spotId/images',
     restoreUser,
     async (req, res) => {
@@ -304,14 +281,14 @@ router.post('/:spotId/images',
         //check if spot belongs to current owner
         let currentUserId = req.user.dataValues.id;
         const spotId = parseInt(req.params.spotId)
-        console.log(currentUserId, 'current user---------------')
-        console.log(spotId, 'current spot---------------')
+        // console.log(currentUserId, 'current user---------------')
+        // console.log(spotId, 'current spot---------------')
 
         const currSpot = await Spot.findOne({
             where: {id: spotId}
         })
 
-        console.log(currSpot, 'currSpot--------------------')
+        // console.log(currSpot, 'currSpot--------------------')
         // console.log(currSpot.dataValues.ownerId, '-----------------------')
         // console.log(currSpot.dataValues.id, '-----------------------')
 
@@ -349,6 +326,7 @@ router.post('/:spotId/images',
         res.status(200).json(newImg)
     })
 
+    //Edit a Spot
     router.put('/:spotId',
         restoreUser,
         async (req, res) => {
@@ -398,23 +376,32 @@ router.post('/:spotId/images',
         res.status(200).json(currSpot)
     })
 
+    //Delete a Spot
     router.delete('/:spotId',
     restoreUser,
     async (req, res) => {
-        const spotId = req.params.spotId; //
-        console.log(spotId)
+        const spotId = parseInt(req.params.spotId); //
+        const user = req.user.dataValues.id
+        // console.log(spotId, user, 'user------------------')
 
         const currSpot = await Spot.findOne({
             where: {id: spotId}
         })
-        // console.log(currSpot, 'currSpot-----')
-
+        // console.log(currSpot.dataValues.ownerId, 'currSpot-----')
         if(!currSpot){
             return res.status(404).json({
                 "message": "Spot couldn't be found",
                 "statusCode": 404
             })
         }
+
+        if(user !== currSpot.dataValues.ownerId){
+            return res.status(404).json({
+                "message": "Spot couldn't be found",
+                "statusCode": 404
+            })
+        }
+
 
         await Spot.destroy({
             where: {id :spotId}
@@ -453,16 +440,20 @@ router.post('/:spotId/images',
             where: {spotId: spotId}
         })
         // console.log(currReviews, 'test---------------------')
-        currReviews.forEach( ele => {
-            const user = ele.dataValues.userId;
-            // console.log(user, 'test---------------------')
-            if(userId === user){
-                return res.status(404).json({
-                    "message": "User already has a review for this spot",
-                    "statusCode": 403
-                })
-            }
-        })
+
+        for( let i = 0; i< currReviews.length; i++){
+
+                const user = currReviews[i].dataValues.userId;
+                // console.log(user, 'test---------------------')
+                if(userId === user){
+                    return res.status(403).json({
+                        "message": "User already has a review for this spot",
+                        "statusCode": 403
+                    })
+                }
+        }
+        // currReviews.forEach( ele => {
+        // })
 
         const rev = await Review.create({
             spotId, userId, review, stars
@@ -474,7 +465,7 @@ router.post('/:spotId/images',
 
 
     //Get all Reviews by a Spot's id
-    router.get('/:spotId/reviews',
+    router.get('/:spotId/reviews', restoreUser,
     async (req, res) => {
         const obj = { "Reviews": []}
         const spotId = req.params.spotId;
@@ -494,7 +485,7 @@ router.post('/:spotId/images',
             let revImg = ele.dataValues.ReviewImages
             // console.log(revImg, 'revImg---------------------')
             revImg.forEach( ele1 => {
-                console.log(ele1.dataValues.updatedAt, 'ele1--------------')
+                // console.log(ele1.dataValues.updatedAt, 'ele1--------------')
                 delete ele1.dataValues.reviewId  //delete reviewId
                 delete ele1.dataValues.createdAt  //delete createdAt
                 delete ele1.dataValues.updatedAt  //delete updatedAt
@@ -508,12 +499,13 @@ router.post('/:spotId/images',
         })
 
         //Error response: Couldn't find a Spot with the specified id
-        if(!rev.length){
+        if(!rev.length){  //spots that don't exist and spots with no reviews
             return res.status(404).json({
                 "message": "Spot couldn't be found",
                 "statusCode": 404
             })
         }
+
 
         res.status(200).json(obj)
     })
@@ -548,7 +540,8 @@ router.post('/:spotId/images',
         })
         // console.log(user, 'user-------------------')
         // obj.Bookings.push(user)
-        const objUser = {"User": {user}}
+        delete user.dataValues.username
+        const key = "User";
 
         if(userId !== booking.dataValues.userId){
             delete booking.dataValues.id;
@@ -561,8 +554,10 @@ router.post('/:spotId/images',
             res.status(200).json(obj)
 
         } else {
-            obj.Bookings.push(objUser);
+            booking.dataValues[key] = user
+            console.log(booking, 'booking--------------------')
             obj.Bookings.push(booking);
+            // obj.Bookings.push(objUser);
 
             res.status(200).json(obj)
         }
@@ -594,6 +589,14 @@ router.post('/:spotId/images',
         const booking = await Booking.findAll();
         // console.log(booking)
 
+        //Error response: Couldn't find a Spot with the specified id
+        if(!spot){
+            return res.status(404).json({
+                "message": "Spot couldn't be found",
+                "statusCode": 404
+            })
+        }
+        
         //Require proper authorization: Spot must NOT belong to the current user
         if(userId === spot.dataValues.ownerId){
             return res.status(404).json({
@@ -602,13 +605,6 @@ router.post('/:spotId/images',
             })
         }
 
-        //Error response: Couldn't find a Spot with the specified id
-        if(!spot){
-            return res.status(404).json({
-                "message": "Spot couldn't be found",
-                "statusCode": 404
-            })
-        }
 
         //Error response: Booking conflict
         for (let i=0; i< booking.length; i++){
