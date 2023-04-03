@@ -12,6 +12,8 @@ const booking = require('../../db/models/booking');
 router.get('/', async (req, res) => {
     // console.log('in the route', Spot)
     let obj = { "Spots": []}
+    const key = "page";
+    const key1 = "size"
     let {page, size} = req.query;
 
     if(!page) page = 1;
@@ -76,7 +78,8 @@ router.get('/', async (req, res) => {
         //push to obj.spot array
         obj.Spots.push(ele)
     })
-
+    obj[key] = page;
+    obj[key1] = size;
     // console.log('finallllllllllllll', obj)
 
     return res.status(200).json(obj)
@@ -364,16 +367,20 @@ router.post('/:spotId/images',
             })
         }
 
-        const updatedSpot = await Spot.update({
+         await Spot.update({
             ownerId, address, city, state, country, lat, lng, name,
             description, price
         }, {
             where: {id: spotId}
         })
+
+        const updatedSpot = await Spot.findOne({
+            where: {id: spotId}
+        })
         // console.log(updatedSpot, 'update-------------------')
 
 
-        res.status(200).json(currSpot)
+        res.status(200).json(updatedSpot)
     })
 
     //Delete a Spot
@@ -596,7 +603,7 @@ router.post('/:spotId/images',
                 "statusCode": 404
             })
         }
-        
+
         //Require proper authorization: Spot must NOT belong to the current user
         if(userId === spot.dataValues.ownerId){
             return res.status(404).json({

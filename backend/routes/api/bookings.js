@@ -13,10 +13,10 @@ router.get('/current',
 restoreUser,
 async (req, res) => {
     const userId = req.user.dataValues.id
-    // console.log(userId, 'user---------------------')
+    console.log(userId, 'user---------------------')
 
     const bookings = await Booking.findAll({
-        where: {id: userId},          //change id==========================
+        where: {userId: userId},          //change id==========================
         include: [Spot]
     })
 
@@ -24,7 +24,7 @@ async (req, res) => {
 
     })
     // console.log(spotimg.dataValues, 'test----------')
-    // console.log(bookings, 'bookings------------------------')
+    console.log(bookings, 'bookings------------------------')
     const obj = {"Bookings": []};
     // const key = "Spot";
     const key1 = "previewImage";
