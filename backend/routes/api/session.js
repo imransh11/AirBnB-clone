@@ -25,9 +25,9 @@ router.post(
     validateLogin,
     async (req, res, next) => {
       const { credential, password } = req.body;
-
+      // console.log(credential, password, 'reqbody====================')
       const user = await User.login({ credential, password });
-
+      // console.log(user, 'user-------------------')
       if (!user) {
         return res.status(401).json({
           "message": "Invalid credentials",
