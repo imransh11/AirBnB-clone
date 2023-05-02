@@ -24,6 +24,10 @@ function LoginFormModal() {
       });
   };
 
+  const demo = (e) => {
+    e.preventDefault();
+  }
+
   return (
     <>
       <h1>Log In</h1>
@@ -52,6 +56,7 @@ function LoginFormModal() {
         <button type="submit">Log In</button>
       </form>
       <div>
+        <button onClick={demo}>Demo User</button>
       </div>
     </>
   );
