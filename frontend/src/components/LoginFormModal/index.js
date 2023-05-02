@@ -51,6 +51,8 @@ function LoginFormModal() {
         )}
         <button type="submit">Log In</button>
       </form>
+      <div>
+      </div>
     </>
   );
 }
