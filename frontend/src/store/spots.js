@@ -1,6 +1,7 @@
 // constants
 const GET_ALL_SPOTS = 'airbnb/getAllSpots'
 const SPOT_DETAIL = 'airbnb/spotDetail'
+const CREATE_SPOT = 'airbnb/createSpot'
 
 //regular
 const loadSpots = (spots) => {
@@ -16,6 +17,11 @@ const spotDetailById = (spotById) => {
         spotById
     }
 }
+
+const createSpot = newSpot => ({
+    type: CREATE_SPOT,
+    newSpot
+})
 
 //thunk
 export const getAllSpots = () => async (dispatch) => {
@@ -46,6 +52,24 @@ export const spotDetail = (spotId) => async (dispatch) => {
     }
 };
 
+export const CreateNewSpot = (payload) => async (dispatch) => {
+    console.log(payload, 'INSIDE')
+    const response = await fetch('/api/spots/new', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+    });
+    console.log(response, 'res--------------')
+
+    if(response.ok){
+        const newSpot = await response.json();
+        dispatch(createSpot(newSpot))
+        return newSpot;
+    }
+}
+
 //state
 const initialState = {};
 
@@ -67,6 +91,10 @@ const spotsReducer = (state = initialState, action) => {
             newState[spot.id] = spot
             console.log(newState, 'newState')
             return newState
+        }
+        case CREATE_SPOT: {
+            const newState = {};
+            return newState = {...state, [action.newSpot.id]: action.newSpot}
         }
         default:
             return state
