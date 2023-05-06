@@ -1,10 +1,12 @@
-import { NavLink } from "react-router-dom";
+import CreateSpotForm from "./CreateSpotForm";
 
 
 
 function CreateSpot() {
     return (
-        <NavLink to=''>Create a Spot</NavLink>
+        <>
+            <CreateSpotForm />
+        </>
     )
 }
 

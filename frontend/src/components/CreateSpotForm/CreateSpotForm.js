@@ -1,6 +1,7 @@
 import { useState } from "react"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { CreateNewSpot } from "../../store/spots"
+import { useHistory } from "react-router-dom"
 
 
 
@@ -9,33 +10,197 @@ import { CreateNewSpot } from "../../store/spots"
 
 const CreateSpotForm = () => {
 
+    // const newSpot = useSelector(state => state)
+    // console.log(newSpot, 'state---')
+
+
     const [country, setCountry] = useState('')
     const [streetAdress, setStreeAdress] = useState('')
+    const [city, setCity] = useState('')
+    const [state, setState] = useState('')
+    const [latitude, setLatitude] = useState('')
+    const [longitude, setLongitude] = useState('')
+    const [description, setDescription] = useState('')
+    const [title, setTitle] = useState('')
+    const [price, setPrice] = useState('')
+    const [imageURL, SetImageURL] = useState('')
+    const [imageURL1, SetImageURL1] = useState('')
+    const [imageURL2, SetImageURL2] = useState('')
+    const [imageURL3, SetImageURL3] = useState('')
+    const [imageURL4, SetImageURL4] = useState('')
+
     const dispatch = useDispatch()
+    const history = useHistory()
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        dispatch(CreateNewSpot())
+        const payload = {
+            country,
+            streetAdress
+        }
+
+        let newSpot;
+        newSpot = dispatch(CreateNewSpot(payload))
+
+        if(newSpot){
+            history.push(`/spots/${newSpot}`)
+        }
     }
 
     return (
-        <section>
-            <form onSubmit={handleSubmit}>
-                <label>
-                    Country
-                    <input value={country}
-                    onChange={(e) => setCountry(e.target.value)}/>
-                </label>
-                <label>
-                    Street Adress
-                    <input
-                        value={streetAdress}
-                        onChange={(e) => setStreeAdress(e.target.value)}
-                    />
-                </label>
-            </form>
-        </section>
+        <>
+            <h1>Create a new Spot</h1>
+            <section>
+                <form onSubmit={handleSubmit}>
+                    <div>
+                        <h2>Where's your place located?</h2>
+                        <label>
+                            Country
+                            <input
+                                placeholder="Country"
+                                required
+                                value={country}
+                                type="text"
+                                onChange={(e) => setCountry(e.target.value)}/>
+                        </label>
+                        <label>
+                            Street Adress
+                            <input
+                                placeholder="Address"
+                                required
+                                type="text"
+                                value={streetAdress}
+                                onChange={(e) => setStreeAdress(e.target.value)}
+                            />
+                        </label>
+                        <label>
+                            City
+                            <input type="text"
+                                placeholder="city"
+                                required
+                                value={city}
+                                onChange={(e) => setCity(e.target.value)}
+                            />
+                        </label>
+                        <label>
+                            State
+                            <input
+                                type="text"
+                                placeholder="STATE"
+                                required
+                                value={state}
+                                onChange={(e) => setState(e.target.value)}
+                                />
+                        </label>
+                        <label>
+                            Latitude
+                                <input
+                                type="number"
+                                placeholder="Latitude"
+                                value={latitude}
+                                onChange={(e) => setLatitude(e.target.value)}
+                                />
+                        </label>
+                        <label>
+                            Longitude
+                             <input
+                                type="number"
+                                placeholder="Longitude"
+                                value={longitude}
+                                onChange={(e) => setLongitude(e.target.value)}
+                             />
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            <h4>Describe your place to guests</h4>
+                            <p>
+                            Mention the best features of your space, any special amentities like
+                            fast wif or parking, and what you love about the neighborhood.
+                            </p>
+                            <textarea
+                                type="text"
+                                placeholder="Please write at least 30 characters"
+                                required
+                                value={description}
+                                onChange={(e) => setDescription(e.target.value)}
+                            />
+                        </label>
+                    </div>
+                    <div>
+                        <h4>Create a title for your spot</h4>
+                        <p>Catch guests' attention with a spot title that highlights what makes
+                            your place special.</p>
+                        <input
+                            type="text"
+                            placeholder="Name of your Spot"
+                            required
+                            value={title}
+                            onChange={(e) => setTitle(e.target.value)}
+                        />
+                    </div>
+                    <div>
+                        <label>
+                            <h4>Set a base price for your spot</h4>
+                            <p>
+                            Competitive pricing can help your listing stand out and rank higher
+                            in search results.
+                            </p>
+                            <input
+                                type="number"
+                                placeholder="Price per night (USD)"
+                                required
+                                value={price}
+                                onChange={(e) => setPrice(e.target.value)}
+                            />
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            <h4>Liven up your spot with photos</h4>
+                            <p>Submit a link to at least one photo to publish
+                                your spot.
+                            </p>
+                            <input
+                                type="text"
+                                placeholder="Preview Image URL"
+                                required
+                                value={imageURL}
+                                onChange={(e) => SetImageURL(e.target.value)}
+                            />
+                            <input
+                                type="text"
+                                placeholder="Image URL"
+                                value={imageURL1}
+                                onChange={(e) => SetImageURL1(e.target.value)}
+                            />
+                            <input
+                                type="text"
+                                placeholder="Image URL"
+                                value={imageURL2}
+                                onChange={(e) => SetImageURL2(e.target.value)}
+                            />
+                            <input
+                                type="text"
+                                placeholder="Image URL"
+                                value={imageURL3}
+                                onChange={(e) => SetImageURL3(e.target.value)}
+                            />
+                            <input
+                                type="text"
+                                placeholder="Image URL"
+                                value={imageURL4}
+                                onChange={(e) => SetImageURL4(e.target.value)}
+                            />
+                        </label>
+                    </div>
+                    <div>
+                        <button type="submit">Create Spot</button>
+                    </div>
+                </form>
+            </section>
+        </>
     )
 }
 
