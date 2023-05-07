@@ -60,9 +60,9 @@ const CreateSpotForm = () => {
                 errors['image'] = 'Preview Image is required.'
             }
             if(imageURL1.length && !checkImg(imageURL1)) errors['image1'] = 'Image URL must end in .png, .jpg, or .jpeg'
-            if(imageURL2.length && checkImg(imageURL2)) errors['image2'] = 'Image URL must end in .png, .jpg, or .jpeg'
-            if(imageURL3.length && checkImg(imageURL3)) errors['image3'] = 'Image URL must end in .png, .jpg, or .jpeg'
-            if(imageURL4.length && checkImg(imageURL4)) errors['image4'] = 'Image URL must end in .png, .jpg, or .jpeg'
+            if(imageURL2.length && !checkImg(imageURL2)) errors['image2'] = 'Image URL must end in .png, .jpg, or .jpeg'
+            if(imageURL3.length && !checkImg(imageURL3)) errors['image3'] = 'Image URL must end in .png, .jpg, or .jpeg'
+            if(imageURL4.length && !checkImg(imageURL4)) errors['image4'] = 'Image URL must end in .png, .jpg, or .jpeg'
 
 
 
