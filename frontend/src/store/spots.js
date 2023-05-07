@@ -63,12 +63,35 @@ export const CreateNewSpot = (payload) => async (dispatch) => {
         },
         body: JSON.stringify(payload)
     });
+
     console.log(response, 'res--------------')
 
     if(response.ok){
         const newSpot = await response.json();
         console.log(newSpot, 'newspot inside thunk')
         dispatch(createSpot(newSpot))
+
+        //res
+        const imageArr = payload.img
+        console.log(imageArr, 'imageArr-------')
+        for(let i=0; i<imageArr.length; i++){
+            let obj = {}
+
+            if(imageArr[i].length > 0) {
+
+                obj.url = imageArr[i]
+                const responseImg = await csrfFetch(`/api/spots/${newSpot.id}/images`,{
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(obj)
+                }
+                )
+            }
+        }
+        // console.log(responseImg, 'responseImg------')
+
         return newSpot;
     }
 }

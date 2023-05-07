@@ -11,8 +11,9 @@ const SpotDetails = () => {
 
     const {spotId} = useParams()
     const spotClicked = useSelector((state) => state.spots[spotId])
+    const img = spotClicked.SpotImages //loading later
     const spotReviews = useSelector(state => Object.values(state.reviews))
-    console.log(spotReviews, spotId, 'spot----byID-----------')
+    console.log(spotClicked,spotReviews,img , spotId, 'spot----byID-----------')
 
 
     useEffect(() => {
@@ -20,6 +21,16 @@ const SpotDetails = () => {
         dispatch(spotDetail(spotId))
         dispatch(getReviewsBySpotId(spotId))
     }, [dispatch, spotReviews.length])
+
+    //reload error
+    if(!img){
+        return (
+            <>
+                {console.log('before useEffect')}
+                <p>loading...</p>
+            </>
+        )
+    }
 
     console.log('TEST--------------------')
     return (
@@ -58,7 +69,6 @@ const SpotDetails = () => {
 
                 </>
                 }
-             {/* <p>{spot.city}</p> */}
         </div>
     )
 }

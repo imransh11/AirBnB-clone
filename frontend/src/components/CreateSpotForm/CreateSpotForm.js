@@ -46,6 +46,7 @@ const CreateSpotForm = () => {
                     }
                 }return false
             }
+
             console.log(url,'imageurl-------------------')
             const errors = {};
             if(!country.length) errors['country'] = 'Country is required'
@@ -81,11 +82,7 @@ const CreateSpotForm = () => {
             description,
             name: title,
             price,
-            SpotImages: [url],
-            imageURL1,
-            imageURL2,
-            imageURL3,
-            imageURL4
+            img: [url, imageURL1, imageURL2, imageURL3, imageURL4],
         }
 
         let newSpot;
