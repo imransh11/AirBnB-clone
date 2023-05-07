@@ -1,3 +1,5 @@
+import { csrfFetch } from "./csrf";
+
 // constants
 const GET_ALL_SPOTS = 'airbnb/getAllSpots'
 const SPOT_DETAIL = 'airbnb/spotDetail'
@@ -41,7 +43,7 @@ export const getAllSpots = () => async (dispatch) => {
 export const spotDetail = (spotId) => async (dispatch) => {
     console.log('IN THUNK')
     const response = await fetch(`/api/spots/${spotId}`)
-    console.log(response, 'SPOTdetail')
+    console.log(response.body, 'SPOTdetail')
 
     if(response.ok){
         const DetailData = await response.json()
@@ -54,7 +56,7 @@ export const spotDetail = (spotId) => async (dispatch) => {
 
 export const CreateNewSpot = (payload) => async (dispatch) => {
     console.log(payload, 'INSIDE')
-    const response = await fetch('/api/spots/new', {
+    const response = await csrfFetch('/api/spots', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -65,6 +67,7 @@ export const CreateNewSpot = (payload) => async (dispatch) => {
 
     if(response.ok){
         const newSpot = await response.json();
+        console.log(newSpot, 'newspot inside thunk')
         dispatch(createSpot(newSpot))
         return newSpot;
     }
@@ -94,7 +97,7 @@ const spotsReducer = (state = initialState, action) => {
         }
         case CREATE_SPOT: {
             let newState = {};
-            console.log(action.newSpot)
+            console.log(action.newSpot, 'state update create spot')
             return newState = {...state, [action.newSpot.id]: action.newSpot}
         }
         default:

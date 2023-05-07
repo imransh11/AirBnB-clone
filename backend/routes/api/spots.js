@@ -506,12 +506,12 @@ router.post('/:spotId/images',
         })
 
         //Error response: Couldn't find a Spot with the specified id
-        if(!rev.length){  //spots that don't exist and spots with no reviews
-            return res.status(404).json({
-                "message": "Spot couldn't be found",
-                "statusCode": 404
-            })
-        }
+        // if(!rev.length){  //spots that don't exist and spots with no reviews
+        //     return res.status(404).json({
+        //         "message": "Spot couldn't be found",
+        //         "statusCode": 404
+        //     })
+        // }
 
 
         res.status(200).json(obj)

@@ -19,12 +19,8 @@ const SpotDetails = () => {
         console.log('IN SPOTDETAIL useEFFECT')
         dispatch(spotDetail(spotId))
         dispatch(getReviewsBySpotId(spotId))
-    }, [dispatch])
-    let spotRev
-    // if(spotReviews){
-    //     spotRev = Object.values(spotReviews)
-    // }
-    // console.log(spotRev, 'spotRev--------=====rev')
+    }, [dispatch, spotReviews.length])
+
     console.log('TEST--------------------')
     return (
 
@@ -47,6 +43,9 @@ const SpotDetails = () => {
                         <p> {spotClicked.avgStarRating} #{spotClicked.numReviews}</p>
                         <button>Reserve</button>
                     </div>
+                    {
+                        spotReviews &&
+
                     <div>
                         {spotReviews.map((rev) => (
                             <div key={rev.id}>
@@ -55,6 +54,7 @@ const SpotDetails = () => {
                         ))}
 
                     </div>
+                    }
 
                 </>
                 }
