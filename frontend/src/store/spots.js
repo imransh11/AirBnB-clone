@@ -80,6 +80,11 @@ export const CreateNewSpot = (payload) => async (dispatch) => {
             if(imageArr[i].length > 0) {
 
                 obj.url = imageArr[i]
+                
+                if(i === 0){
+                    obj.preview = true
+                }
+
                 const responseImg = await csrfFetch(`/api/spots/${newSpot.id}/images`,{
                     method: 'POST',
                     headers: {
