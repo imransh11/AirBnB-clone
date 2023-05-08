@@ -26,7 +26,6 @@ const SpotDetails = () => {
     if(!img){
         return (
             <>
-                {console.log('before useEffect')}
                 <p>loading...</p>
             </>
         )
