@@ -119,19 +119,44 @@ export const CurrentUserSpots = () => async (dispatch) => {
     }
 };
 
-export const updateSpot = spot => async dispatch => {
-    const response = await fetch(`/api/spots/${spot.id}`, {
+export const updateSpot = payload => async dispatch => {
+    console.log(payload, 'IN THUNK updateSpot')
+    const response = await csrfFetch(`/api/spots/${payload.spotId}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(spot)
+        body: JSON.stringify(payload)
     });
     if(response.ok){
         const spot = await response.json();
         dispatch(createSpot(spot))
+
+        //update img
+        // const imageArr = payload.img
+        // for(let i=0; i<imageArr.length; i++){
+        //     let obj = {}
+
+        //     if(imageArr[i]) {
+
+        //         obj.url = imageArr[i]
+
+        //         if(i === 0){
+        //             obj.preview = true
+        //         }
+
+        //         const responseImg = await csrfFetch(`/api/spots/${spot.id}/images`,{
+        //             method: 'PUT',
+        //             headers: {
+        //                 'Content-Type': 'application/json'
+        //             },
+        //             body: JSON.stringify(obj)
+        //         }
+        //         )
+        //     }
+        // }
         return spot;
-    }
+    };
 }
 
 //state

@@ -10,12 +10,7 @@ import { useHistory } from "react-router-dom"
 
 const UpdateSpot = ({spot}) => {
 
-// if(!spot){
-//         return (
-//             <p>loading...</p>
-//         )
-//     }
-
+    // console.log(spot.SpotImages, 'in UPDatespot---')
     const [country, setCountry] = useState(spot.country)
     const [streetAdress, setStreeAdress] = useState(spot.address)
     const [city, setCity] = useState(spot.city)
@@ -25,8 +20,15 @@ const UpdateSpot = ({spot}) => {
     const [description, setDescription] = useState(spot.description)
     const [title, setTitle] = useState(spot.name)
     const [price, setPrice] = useState(spot.price)
-    const [url, setUrl] = useState(spot.url)
-    const [imageURL1, SetImageURL1] = useState(spot.imageURL1)
+    const [url, setUrl] = useState(spot.SpotImages[0].url)
+    const [imageURL1, SetImageURL1] = useState(spot.SpotImages[1].url)
+
+    // if(!spot.SpotImages[2]){
+    //     return;
+    // }else {
+
+    // }
+
     const [imageURL2, SetImageURL2] = useState(spot.imageURL2)
     const [imageURL3, SetImageURL3] = useState(spot.imageURL3)
     const [imageURL4, SetImageURL4] = useState(spot.imageURL4)
@@ -36,7 +38,8 @@ const UpdateSpot = ({spot}) => {
 
     const dispatch = useDispatch()
     const history = useHistory()
-
+    const spotId = spot.id
+    // console.log(spotId, 'spotId---------required')
 
 
 
@@ -77,6 +80,7 @@ const UpdateSpot = ({spot}) => {
         }
 
         const payload = {
+            spotId,
             country,
             address: streetAdress,
             city,

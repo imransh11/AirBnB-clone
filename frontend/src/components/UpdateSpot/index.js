@@ -16,7 +16,19 @@ const Updated = () => {
     useEffect(() => {
         console.log('IN USEEFFECT-------UPDATE')
         dispatch(spotDetail(spotId))
-    }, [dispatch])
+    }, [dispatch]);
+
+    if(!spot){
+        return (
+            <p>loading...</p>
+        )
+    };
+
+    if(!spot.SpotImages){
+        return (
+            <p>loading...</p>
+        )
+    }
 
     return (
         <UpdateSpot spot={spot} />
