@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { CurrentUserSpots } from "../../store/spots"
 import { NavLink, Route } from "react-router-dom"
 import Updated from "../UpdateSpot"
+import Modal from "../DeleteSpotModal/DeleteSpotModal"
 
 
 
@@ -25,7 +26,7 @@ const CurrentSopts = () => {
             <p>loading...</p>
             )
         }
-let test;
+
 let handleClick = async () => {
     // <Route to={`/spots/:id/edit`}>
     //     <Updated />
@@ -41,7 +42,7 @@ let handleClick = async () => {
                             {spot.previewImage}
                         </div>
                         <div>
-                            {test = spot.id}
+                            {spot.id}
                             {spot.city}
                             {spot.state}
                             <div>
@@ -50,7 +51,7 @@ let handleClick = async () => {
                             <b>${spot.price}</b>night
                         </div>
                         <button onClick={handleClick}>Update</button>
-                        <button>Delete</button>
+                        <Modal spotId ={spot.id}/>
                     </div>
 
 

@@ -33,7 +33,7 @@ router.get('/', async (req, res) => {
     const spot = await Spot.findAll({
         include: [SpotImage, Review],
 
-        ...pagination
+        // ...pagination
     })
 
     spot.forEach(ele => {

@@ -5,6 +5,7 @@ const GET_ALL_SPOTS = 'airbnb/getAllSpots'
 const SPOT_DETAIL = 'airbnb/spotDetail'
 const CREATE_SPOT = 'airbnb/createSpot'
 const Current_User_Spots = 'airbnb/currentUsersSpots'
+const Delete_Spot = 'airbnb/DeleteSpot'
 
 //regular
 const loadSpots = (spots) => {
@@ -33,7 +34,12 @@ const currentUser = currSpots => {
     }
 };
 
-// const updateSpot =
+const deletBySpotId = spotId => {
+    return {
+        type: Delete_Spot,
+        spotId
+    }
+}
 
 //thunk
 export const getAllSpots = () => async (dispatch) => {
@@ -132,7 +138,7 @@ export const updateSpot = payload => async dispatch => {
         const spot = await response.json();
         dispatch(createSpot(spot))
 
-        //update img
+        //update img no backend
         // const imageArr = payload.img
         // for(let i=0; i<imageArr.length; i++){
         //     let obj = {}
@@ -157,6 +163,20 @@ export const updateSpot = payload => async dispatch => {
         // }
         return spot;
     };
+};
+
+export const DeleteSpotId = spotId => async dispatch => {
+
+    console.log(spotId, 'IN DELETESPOT Thunk')
+    const response = await csrfFetch(`/api/spots/${spotId}`, {
+        method: 'DELETE'
+    });
+
+    if(response.ok){
+        const deletedData = await response.json();
+        console.log(deletedData, 'deletedData')
+        dispatch(deletBySpotId(spotId))
+    }
 }
 
 //state
@@ -193,6 +213,13 @@ const spotsReducer = (state = initialState, action) => {
             console.log(spotsObj, 'spotsObj-------')
 
             return newState = spotsObj
+        }
+        case Delete_Spot: {
+            let newState = {...state};
+            console.log(newState, action.spotId, 'IN state BeforeDelete')
+            delete newState[action.spotId]
+            console.log(newState, action.spotId, 'IN State AfterDelete')
+            return newState;
         }
         default:
             return state

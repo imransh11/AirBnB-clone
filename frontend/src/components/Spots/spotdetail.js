@@ -23,14 +23,19 @@ const SpotDetails = () => {
     }, [dispatch, spotReviews.length])
 
     //reload error
-    if(!spotClicked){
-        return (
-            <>
-                <p>loading...</p>
-            </>
-        )
-    }
+        if(!spotClicked ){
+                return (
+                    <>
+                        <p>loading...</p>
+                    </>
+                )
+            };
 
+        if(!spotClicked.SpotImages){
+            return (
+                <p>loading...</p>
+            )
+        }
     console.log('TEST--------------------')
     return (
 
