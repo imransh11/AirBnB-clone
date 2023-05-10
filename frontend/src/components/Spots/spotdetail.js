@@ -5,6 +5,7 @@ import { spotDetail } from "../../store/spots"
 import { getReviewsBySpotId } from "../../store/reviews"
 import SpotImage from "./spotImage"
 import PostReviewModal from "../PostReviewModal/PostReviewModal"
+import DeleteReviewModal from "../DeleteReviewModal/DeleteReviewModal"
 
 
 const SpotDetails = () => {
@@ -56,7 +57,17 @@ const SpotDetails = () => {
                     </div>
                     <div>
                         <p> <b>${spotClicked.price}</b> night </p>
-                        <p> {spotClicked.avgStarRating} #{spotClicked.numReviews}</p>
+                        <div> {spotClicked.avgStarRating}
+                            <div>
+                                <p>
+
+                                    <p>#{spotClicked.numReviews}</p>
+                                    {spotClicked.numReviews === 0 ? <p>New</p> : <p>
+                                        {spotClicked.numReviews > 1 ? <p>reviews</p> : <p>review</p>}
+                                        </p>}
+                                </p>
+                            </div>
+                        </div>
                         <button>Reserve</button>
                     </div>
                     <div>
@@ -68,7 +79,14 @@ const SpotDetails = () => {
                     <div>
                         {spotReviews.map((rev) => (
                             <div key={rev.id}>
+                                <div>
+                                    <b>{rev.User.firstName}</b>
+                                </div>
                                 {rev.review}
+                                    <div>
+                                        <DeleteReviewModal reviewId ={rev.id}/>
+                                    </div>
+                                {console.log(rev, 'rev map test----')}
                             </div>
                         ))}
 
