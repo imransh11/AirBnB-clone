@@ -11,7 +11,7 @@ import Modal from "../DeleteSpotModal/DeleteSpotModal"
 const CurrentSopts = () => {
     const dispatch = useDispatch()
 
-    const spotsArr = useSelector(state => state.spots.Spots)
+    const spotsArr = useSelector(state => Object.values(state.spots))
     console.log(spotsArr, 'currentSpots------')
 
 

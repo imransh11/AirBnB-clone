@@ -34,7 +34,7 @@ const currentUser = currSpots => {
     }
 };
 
-const deletBySpotId = spotId => {
+const deleteBySpotId = spotId => {
     return {
         type: Delete_Spot,
         spotId
@@ -175,7 +175,7 @@ export const DeleteSpotId = spotId => async dispatch => {
     if(response.ok){
         const deletedData = await response.json();
         console.log(deletedData, 'deletedData')
-        dispatch(deletBySpotId(spotId))
+        dispatch(deleteBySpotId(spotId))
     }
 }
 
@@ -209,22 +209,17 @@ const spotsReducer = (state = initialState, action) => {
         case Current_User_Spots: {
             let newState = {}
 
-            const spotsObj = action.currSpots
+            const spotsObj = action.currSpots.Spots
+            spotsObj.forEach(spot => newState[spot.id] = spot)
             console.log(spotsObj, 'spotsObj-------')
 
-            return newState = spotsObj
+            return newState
         }
         case Delete_Spot: {
             let newState = {...state};
-            console.log(newState.Spots, action.spotId, 'IN state BeforeDelete')
-            let i = 0;
-            const test = newState.Spots.forEach((spot, i) => {
-                i++;
-                if(action.spotId === spot.id){
-                    newState.Spots.splice(i, 1)
-                }
-            })
-            console.log(newState.Spots, action.spotId, 'IN State AfterDelete')
+            console.log(newState, action.spotId, 'IN state BeforeDelete')
+            delete newState[action.spotId]
+            console.log(newState, action.spotId, 'IN State AfterDelete')
             return newState;
         }
         default:
