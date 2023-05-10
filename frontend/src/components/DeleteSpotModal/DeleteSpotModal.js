@@ -17,8 +17,8 @@ export default function Modal ({spotId}) {
 
     const handleDelete = () => {
         dispatch(DeleteSpotId(spotId));
-        toggleModal();
         dispatch(CurrentUserSpots());
+        toggleModal();
     }
 
     return (

@@ -216,9 +216,15 @@ const spotsReducer = (state = initialState, action) => {
         }
         case Delete_Spot: {
             let newState = {...state};
-            console.log(newState, action.spotId, 'IN state BeforeDelete')
-            delete newState[action.spotId]
-            console.log(newState, action.spotId, 'IN State AfterDelete')
+            console.log(newState.Spots, action.spotId, 'IN state BeforeDelete')
+            let i = 0;
+            const test = newState.Spots.forEach((spot, i) => {
+                i++;
+                if(action.spotId === spot.id){
+                    newState.Spots.splice(i, 1)
+                }
+            })
+            console.log(newState.Spots, action.spotId, 'IN State AfterDelete')
             return newState;
         }
         default:

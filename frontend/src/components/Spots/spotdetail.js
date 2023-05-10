@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom"
 import { spotDetail } from "../../store/spots"
 import { getReviewsBySpotId } from "../../store/reviews"
 import SpotImage from "./spotImage"
+import PostReviewModal from "../PostReviewModal/PostReviewModal"
 
 
 const SpotDetails = () => {
@@ -58,6 +59,9 @@ const SpotDetails = () => {
                         <p> {spotClicked.avgStarRating} #{spotClicked.numReviews}</p>
                         <button>Reserve</button>
                     </div>
+                    <div>
+                            <PostReviewModal />
+                    </div>
                     {
                         spotReviews &&
 
@@ -73,6 +77,7 @@ const SpotDetails = () => {
 
                 </>
                 }
+
         </div>
     )
 }
