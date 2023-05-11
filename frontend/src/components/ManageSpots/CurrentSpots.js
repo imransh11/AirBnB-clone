@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { CurrentUserSpots } from "../../store/spots"
-import { NavLink, Route } from "react-router-dom"
+import { NavLink, Route, useHistory } from "react-router-dom"
 import Updated from "../UpdateSpot"
 import Modal from "../DeleteSpotModal/DeleteSpotModal"
 
@@ -13,6 +13,7 @@ const CurrentSopts = () => {
 
     const spotsArr = useSelector(state => Object.values(state.spots))
     console.log(spotsArr, 'currentSpots------')
+    const history = useHistory()
 
 
 
@@ -26,12 +27,6 @@ const CurrentSopts = () => {
             <p>loading...</p>
             )
         }
-
-let handleClick = async () => {
-    // <Route to={`/spots/:id/edit`}>
-    //     <Updated />
-    // </Route>
-}
 
     return (
         <>
@@ -50,7 +45,9 @@ let handleClick = async () => {
                             </div>
                             <b>${spot.price}</b>night
                         </div>
-                        <button onClick={handleClick}>Update</button>
+                        <button onClick={
+                            () => history.push(`/spots/${spot.id}/edit`)
+                        }>Update</button>
                         <Modal spotId ={spot.id}/>
                     </div>
 
