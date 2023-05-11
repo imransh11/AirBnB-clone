@@ -1,21 +1,22 @@
-import React, { useEffect } from "react"
+import React from "react"
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { createReviewBySpotId } from "../../store/reviews"
 import { spotDetail } from "../../store/spots"
 
 
-const CreateReviewForm = () => {
+const CreateReviewForm = ({toggleModal}) => {
 
     const dispatch = useDispatch()
 
     const [review, setReview] = useState('')
-    const [stars, setStars] = useState("0")
-    const [validationsErrors, setValidationErrors] = useState({})
+    const [stars, setStars] = useState("")
+    const [errors, setErrors] = useState('')
+
 
     const Rev = useSelector(state => state)
     const StateSpot = useSelector(state => Object.values(state.spots))
-    console.log(Rev.session.user.id, StateSpot, 'rev---------revForm')
+    // console.log(Rev.session.user.id, StateSpot, 'rev---------revForm')
 
 
     const checkStat = () => {
@@ -26,15 +27,8 @@ const CreateReviewForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setErrors('')
         console.log('test handle----------')
-        // const errors = {};
-        // if(review && review.length < 10) errors['review'] = 'need at least ten character.'
-        // if(stars < 1) errors['stars'] = 'needs rating'
-
-        // if(Object.values(errors).length){
-        //     setValidationErrors(errors)
-        //     return alert('cannot submit')
-        // };
 
         const RevPayload = {
             spotId: StateSpot[0].id,
@@ -44,8 +38,30 @@ const CreateReviewForm = () => {
         };
 
         let newReviewbySpotId = await dispatch(createReviewBySpotId(RevPayload))
-        console.log(newReviewbySpotId, 'newReview in create rev form')
-        await dispatch(spotDetail(RevPayload.spotId))
+        .catch(async (res) => {
+            const data = await res.json();
+            console.log(data, data.message, 'outside if')
+
+
+            if (data.message){
+                console.log(data.message, 'message-----------')
+                setErrors(data.message)
+                console.log(errors, 'inside error')
+                return
+            }
+            console.log(errors, 'test------')
+        })
+        console.log(newReviewbySpotId, errors, 'newReview in create rev form')
+
+        await dispatch(spotDetail(RevPayload.spotId));
+        console.log(errors, 'out------------')
+        if(errors.message){
+            toggleModal()
+        }
+        if(!errors.message){
+            toggleModal()
+        }
+
     }
 
 
@@ -55,6 +71,9 @@ const CreateReviewForm = () => {
                 <h3>How was your stay?</h3>
             </div>
             <form onSubmit={handleSubmit}>
+                    <div>
+                        {errors ? <div>{errors}</div> : <div></div>}
+                    </div>
                     <div>
                         <textarea
                         placeholder="Leave your review here..."
@@ -76,7 +95,8 @@ const CreateReviewForm = () => {
                     </div>
 
                     <div>
-                        <button type="submit" disabled={checkStat()}>Submit Your</button>
+                        <button type="submit" disabled={checkStat()}
+                        >Submit Your Review</button>
                     </div>
             </form>
         </>

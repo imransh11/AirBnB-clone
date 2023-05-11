@@ -24,7 +24,7 @@ export default function PostReviewModal () {
                 <div id="modal">
                 <div id="modal-background" onClick={toggleModal}></div>
                 <div id="modal-content">
-                    <CreateReviewForm />
+                    <CreateReviewForm toggleModal={toggleModal}/>
                 </div>
             </div>
             )}

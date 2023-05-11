@@ -56,6 +56,8 @@ export const createReviewBySpotId = (RevPayload) => async (dispatch) => {
         const newCreatedReview = await response.json();
         console.log(newCreatedReview, 'newRev thunk RES')
         dispatch(newReview(newCreatedReview))
+    } else {
+        console.log(response, 'response from create rev else')
     }
 }
 
@@ -70,6 +72,7 @@ export const deleteReviewById = (reviewId) => async (dispatch) => {
         console.log(delData, 'delData======')
         dispatch(DeleteReview(reviewId))
     }
+
 }
 
 //state
@@ -89,8 +92,10 @@ const reviewsReducer = (state = initialState, action) => {
         };
         case CREATE_REVIEW: {
             const newState = {...state};
-            console.log(action.review, 'action in State')
-            return newState[action.review.id] = action.review
+            console.log(action.review, newState, 'action in State')
+            newState[action.review.id] = action.review
+            console.log(newState, 'after adding in state')
+            return newState
         };
         case DELETE_REVIEW: {
             const newState = {...state}

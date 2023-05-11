@@ -13,9 +13,9 @@ const SpotDetails = () => {
 
     const {spotId} = useParams()
     const spotClicked = useSelector((state) => state.spots[spotId])
-    // const img = spotClicked.SpotImages //loading later
+    const sessionUser = useSelector(state => state.session)
     const spotReviews = useSelector(state => Object.values(state.reviews))
-    console.log(spotClicked,spotReviews, spotId, 'spot----byID-----------')
+    console.log(spotClicked,spotReviews, spotId, sessionUser,'spot----byID-----------')
 
 
     useEffect(() => {
@@ -25,7 +25,7 @@ const SpotDetails = () => {
     }, [dispatch, spotReviews.length])
 
     //reload error
-        if(!spotClicked ){
+        if(!spotClicked){
                 return (
                     <>
                         <p>loading...</p>
@@ -37,8 +37,20 @@ const SpotDetails = () => {
             return (
                 <p>loading...</p>
             )
-        }
-    console.log('TEST--------------------')
+        };
+
+        // if(!sessionUser.user){
+        //     return(
+        //         <p>loading...</p>
+        //     )
+        // }
+
+        let spotRevUserId = [] // ids of user who posted rev
+        spotReviews.forEach((rev) => {
+            spotRevUserId.push(rev.userId)
+        })
+
+    console.log(spotRevUserId ,'TEST--------------------')
     return (
 
         <div>
@@ -59,20 +71,26 @@ const SpotDetails = () => {
                         <p> <b>${spotClicked.price}</b> night </p>
                         <div> {spotClicked.avgStarRating}
                             <div>
-                                <p>
-
-                                    <p>#{spotClicked.numReviews}</p>
                                     {spotClicked.numReviews === 0 ? <p>New</p> : <p>
-                                        {spotClicked.numReviews > 1 ? <p>reviews</p> : <p>review</p>}
+                                        {spotClicked.numReviews > 1 ? <b>#{spotClicked.numReviews} reviews</b> : <b>#{spotClicked.numReviews} review</b>}
                                         </p>}
-                                </p>
                             </div>
                         </div>
                         <button>Reserve</button>
                     </div>
-                    <div>
-                            <PostReviewModal />
-                    </div>
+                    {
+                        (sessionUser.user) &&
+                        <div>
+
+                            {
+                                (sessionUser.user.id !== spotClicked.ownerId) &&
+                                !(spotRevUserId.includes(sessionUser.user.id))?  
+                                <div>
+                                    <PostReviewModal />
+                                </div> : <div></div>
+                            }
+                        </div>
+                    }
                     {
                         spotReviews &&
 
@@ -80,12 +98,24 @@ const SpotDetails = () => {
                         {spotReviews.map((rev) => (
                             <div key={rev.id}>
                                 <div>
-                                    <b>{rev.User.firstName}</b>
+                                    {!rev.User ? <p>loading...</p> : <b>{rev.User.firstName}</b>}
                                 </div>
+                                <div>
                                 {rev.review}
-                                    <div>
-                                        <DeleteReviewModal reviewId ={rev.id}/>
-                                    </div>
+                                </div>
+
+                                {sessionUser.user &&
+                                // <div>
+                                //     {
+
+                                        (sessionUser.user.id === rev.userId)?
+                                        <div>
+                                            <DeleteReviewModal reviewId ={rev.id}/>
+                                        </div> : <div></div>
+                                //     }
+                                // </div>
+                                }
+
                                 {console.log(rev, 'rev map test----')}
                             </div>
                         ))}
