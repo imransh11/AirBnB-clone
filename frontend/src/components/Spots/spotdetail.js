@@ -15,11 +15,11 @@ const SpotDetails = () => {
     const spotClicked = useSelector((state) => state.spots[spotId])
     const sessionUser = useSelector(state => state.session)
     const spotReviews = useSelector(state => Object.values(state.reviews))
-    console.log(spotClicked,spotReviews, spotId, sessionUser,'spot----byID-----------')
+    // console.log(spotClicked,spotReviews, spotId, sessionUser,'spot----byID-----------')
 
 
     useEffect(() => {
-        console.log('IN SPOTDETAIL useEFFECT')
+        // console.log('IN SPOTDETAIL useEFFECT')
         dispatch(spotDetail(spotId))
         dispatch(getReviewsBySpotId(spotId))
     }, [dispatch, spotReviews.length])
@@ -50,7 +50,7 @@ const SpotDetails = () => {
             spotRevUserId.push(rev.userId)
         })
 
-    console.log(spotRevUserId ,'TEST--------------------')
+    // console.log(spotRevUserId ,'TEST--------------------')
     return (
 
         <div>
@@ -84,7 +84,7 @@ const SpotDetails = () => {
 
                             {
                                 (sessionUser.user.id !== spotClicked.ownerId) &&
-                                !(spotRevUserId.includes(sessionUser.user.id))?  
+                                !(spotRevUserId.includes(sessionUser.user.id))?
                                 <div>
                                     <PostReviewModal />
                                 </div> : <div></div>
@@ -115,8 +115,6 @@ const SpotDetails = () => {
                                 //     }
                                 // </div>
                                 }
-
-                                {console.log(rev, 'rev map test----')}
                             </div>
                         ))}
 

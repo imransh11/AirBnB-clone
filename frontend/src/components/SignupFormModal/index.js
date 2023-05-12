@@ -15,11 +15,18 @@ function SignupFormModal() {
   const [errors, setErrors] = useState({});
   const { closeModal } = useModal();
 
+  const checkStat = () => {
+    if(((((username.length < 4 || password.length < 6) || (!email)) || (!firstName)) || (!lastName)) || (confirmPassword !== password)){
+      return true
+    } else return false
+  };
+
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (password === confirmPassword) {
       setErrors({});
-      return dispatch(
+       return dispatch(
         sessionActions.signup({
           email,
           username,
@@ -28,9 +35,11 @@ function SignupFormModal() {
           password,
         })
       )
+
         .then(closeModal)
         .catch(async (res) => {
           const data = await res.json();
+          // console.log(data, 'in errors')
           if (data && data.errors) {
             setErrors(data.errors);
           }
@@ -107,7 +116,7 @@ function SignupFormModal() {
         {errors.confirmPassword && (
           <p>{errors.confirmPassword}</p>
         )}
-        <button type="submit">Sign Up</button>
+        <button type="submit" disabled={checkStat()}>Sign Up</button>
       </form>
     </>
   );

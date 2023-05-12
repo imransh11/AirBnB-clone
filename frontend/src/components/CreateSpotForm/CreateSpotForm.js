@@ -44,7 +44,7 @@ const CreateSpotForm = () => {
                 }return false
             }
 
-            console.log(url,'imageurl-------------------')
+            // console.log(url,'imageurl-------------------')
             const errors = {};
             if(!country.length) errors['country'] = 'Country is required'
             if(!streetAdress.length) errors['address'] = 'Address is required'
@@ -86,7 +86,7 @@ const CreateSpotForm = () => {
         newSpot = await dispatch(CreateNewSpot(payload))
         await dispatch(spotDetail(newSpot.id))
 
-        console.log(newSpot, 'newSpot----------')
+        // console.log(newSpot, 'newSpot----------')
         if(newSpot){
             history.push(`/spots/${newSpot.id}`)
         }

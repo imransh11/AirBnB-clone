@@ -12,13 +12,13 @@ const CurrentSopts = () => {
     const dispatch = useDispatch()
 
     const spotsArr = useSelector(state => Object.values(state.spots))
-    console.log(spotsArr, 'currentSpots------')
+    // console.log(spotsArr, 'currentSpots------')
     const history = useHistory()
 
 
 
     useEffect(() => {
-        console.log('in useEFFECT_-------')
+        // console.log('in useEFFECT_-------')
         dispatch(CurrentUserSpots())
     }, [dispatch])
 

@@ -57,13 +57,13 @@ export const getAllSpots = () => async (dispatch) => {
 };
 
 export const spotDetail = (spotId) => async (dispatch) => {
-    console.log('IN THUNK')
+    // console.log('IN THUNK')
     const response = await fetch(`/api/spots/${spotId}`)
-    console.log(response.body, 'SPOTdetail')
+    // console.log(response.body, 'SPOTdetail')
 
     if(response.ok){
         const DetailData = await response.json()
-        console.log(DetailData, 'DETAILDATA')
+        // console.log(DetailData, 'DETAILDATA')
 
         dispatch(spotDetailById(DetailData))
         return DetailData
@@ -71,7 +71,7 @@ export const spotDetail = (spotId) => async (dispatch) => {
 };
 
 export const CreateNewSpot = (payload) => async (dispatch) => {
-    console.log(payload, 'INSIDE')
+    // console.log(payload, 'INSIDE')
     const response = await csrfFetch('/api/spots', {
         method: 'POST',
         headers: {
@@ -112,13 +112,13 @@ export const CreateNewSpot = (payload) => async (dispatch) => {
 };
 
 export const CurrentUserSpots = () => async (dispatch) => {
-    console.log('IN THUNK')
+    // console.log('IN THUNK')
     const response = await csrfFetch('/api/spots/current');
 
-    console.log(response, 'res---------------')
+    // console.log(response, 'res---------------')
     if(response.ok){
         const dataCurr = await response.json()
-        console.log(dataCurr, 'current------Thunk')
+        // console.log(dataCurr, 'current------Thunk')
 
         dispatch(currentUser(dataCurr))
         return dataCurr
@@ -126,7 +126,7 @@ export const CurrentUserSpots = () => async (dispatch) => {
 };
 
 export const updateSpot = payload => async dispatch => {
-    console.log(payload, 'IN THUNK updateSpot')
+    // console.log(payload, 'IN THUNK updateSpot')
     const response = await csrfFetch(`/api/spots/${payload.spotId}`, {
         method: 'PUT',
         headers: {
@@ -167,14 +167,14 @@ export const updateSpot = payload => async dispatch => {
 
 export const DeleteSpotId = spotId => async dispatch => {
 
-    console.log(spotId, 'IN DELETESPOT Thunk')
+    // console.log(spotId, 'IN DELETESPOT Thunk')
     const response = await csrfFetch(`/api/spots/${spotId}`, {
         method: 'DELETE'
     });
 
     if(response.ok){
         const deletedData = await response.json();
-        console.log(deletedData, 'deletedData')
+        // console.log(deletedData, 'deletedData')
         dispatch(deleteBySpotId(spotId))
     }
 }
@@ -195,10 +195,10 @@ const spotsReducer = (state = initialState, action) => {
         case SPOT_DETAIL: {
             const newState = {};
             const spot  = action.spotById
-            console.log(spot, 'spot detail STATE')
+            // console.log(spot, 'spot detail STATE')
 
             newState[spot.id] = spot
-            console.log(newState, 'newState')
+            // console.log(newState, 'newState')
             return newState
         }
         case CREATE_SPOT: {
@@ -211,15 +211,15 @@ const spotsReducer = (state = initialState, action) => {
 
             const spotsObj = action.currSpots.Spots
             spotsObj.forEach(spot => newState[spot.id] = spot)
-            console.log(spotsObj, 'spotsObj-------')
+            // console.log(spotsObj, 'spotsObj-------')
 
             return newState
         }
         case Delete_Spot: {
             let newState = {...state};
-            console.log(newState, action.spotId, 'IN state BeforeDelete')
+            // console.log(newState, action.spotId, 'IN state BeforeDelete')
             delete newState[action.spotId]
-            console.log(newState, action.spotId, 'IN State AfterDelete')
+            // console.log(newState, action.spotId, 'IN State AfterDelete')
             return newState;
         }
         default:
