@@ -10,7 +10,7 @@ import { useHistory } from "react-router-dom"
 
 const UpdateSpot = ({spot}) => {
 
-    // console.log(spot.SpotImages, 'in UPDatespot---')
+    // console.log(spot, 'in UPDatespot---')
     const [country, setCountry] = useState(spot.country)
     const [streetAdress, setStreeAdress] = useState(spot.address)
     const [city, setCity] = useState(spot.city)
@@ -21,7 +21,7 @@ const UpdateSpot = ({spot}) => {
     const [title, setTitle] = useState(spot.name)
     const [price, setPrice] = useState(spot.price)
     const [url, setUrl] = useState(spot.SpotImages[0].url)
-    const [imageURL1, SetImageURL1] = useState(spot.SpotImages[1].url)
+    const [imageURL1, SetImageURL1] = useState('')
 
     // if(!spot.SpotImages[2]){
     //     return;
@@ -46,14 +46,7 @@ const UpdateSpot = ({spot}) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-            // const checkImg = (url) => {
-            //     const ext = ['.png','.jpg','.jpeg']
-            //     for(let i = 0; i < ext.length; i++){
-            //         if(url.includes(ext[i])){
-            //             return true
-            //         }
-            //     }return false
-            // }
+
 
             // console.log(url,'imageurl-------------------')
             const errors = {};
@@ -64,13 +57,7 @@ const UpdateSpot = ({spot}) => {
             if(description.length < 30) errors['description'] = 'Description needs a minimum of 30 Characters'
             if(!title.length) errors['title'] = 'Name is required'
             if(!price) errors['price'] = 'Price is required'
-            // if(url && !checkImg(url)) {
-            //     errors['image'] = 'Preview Image is required.'
-            // }
-            // if(imageURL1.length && !checkImg(imageURL1)) errors['image1'] = 'Image URL must end in .png, .jpg, or .jpeg'
-            // if(imageURL2.length && !checkImg(imageURL2)) errors['image2'] = 'Image URL must end in .png, .jpg, or .jpeg'
-            // if(imageURL3.length && !checkImg(imageURL3)) errors['image3'] = 'Image URL must end in .png, .jpg, or .jpeg'
-            // if(imageURL4.length && !checkImg(imageURL4)) errors['image4'] = 'Image URL must end in .png, .jpg, or .jpeg'
+
 
 
         // setHasSubmitted(true);

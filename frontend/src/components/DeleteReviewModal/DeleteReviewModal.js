@@ -6,7 +6,7 @@ import { deleteReviewById } from "../../store/reviews";
 
 
 export default function DeleteReviewModal ({reviewId}) {
-    console.log(reviewId, 'revid----')
+    // console.log(reviewId, 'revid----')
     const dispatch = useDispatch()
 
     const[modal, setModal] = useState(false)

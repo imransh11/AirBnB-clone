@@ -27,33 +27,47 @@ const CurrentSopts = () => {
             <p>loading...</p>
             )
         }
-
+        console.log(spotsArr, 'test--------')
     return (
         <>
+            {!spotsArr.length ? <div>
+                <NavLink to={'/spots/new'}>
+                    <button>Create a New Spot</button>
+                </NavLink>
+            </div> :
             <div>
-                {spotsArr.map(spot => (
-                    <div key={spot.id}>
-                        <div>
-                            {spot.previewImage}
-                        </div>
-                        <div>
-                            {spot.id}
-                            {spot.city}
-                            {spot.state}
+
+                <div>
+                    {spotsArr.map(spot => (
+                        <>
+                        <div key={spot.id}>
+                        <NavLink to={`/spots/${spot.id}`}>
+
                             <div>
-                                <b>{spot.avgRating}</b>
+                                {spot.previewImage}
                             </div>
-                            <b>${spot.price}</b>night
+                            <div>
+                                {spot.id}
+                                {spot.city}
+                                {spot.state}
+                                <div>
+                                    <b>{spot.avgRating}</b>
+                                </div>
+                                <b>${spot.price}</b>night
+                            </div>
+                        </NavLink>
+
+                            <div>
+                                <button onClick={
+                                    () => history.push(`/spots/${spot.id}/edit`)
+                                }>Update</button>
+                                <Modal spotId ={spot.id}/>
+                            </div>
                         </div>
-                        <button onClick={
-                            () => history.push(`/spots/${spot.id}/edit`)
-                        }>Update</button>
-                        <Modal spotId ={spot.id}/>
-                    </div>
-
-
-                ))}
-            </div>
+                        </>
+                    ))}
+                </div>
+            </div>}
         </>
     )
 }

@@ -19,12 +19,14 @@ const Spots = () => {
         <div>
             {spotList.map((spot) => (
                 <div key={spot.id}>
+                    <NavLink key={spot.id} to={`/spots/${spot.id}`}>
                     <p>{spot.id}</p>
-                    <NavLink key={spot.id} to={`/spots/${spot.id}`}>{spot.previewImage}</NavLink>
+                    {spot.previewImage}
                     <div>{spot.city}</div>
                     <div>{spot.state}</div>
                     <div>{spot.price} night</div>
                     <div>{spot.avgRating}</div>
+                    </NavLink>
                 </div>
 
             ))}

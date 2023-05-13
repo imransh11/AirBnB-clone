@@ -54,7 +54,7 @@ const CreateSpotForm = () => {
             if(!title.length) errors['title'] = 'Name is required'
             if(!price) errors['price'] = 'Price is required'
             if(!checkImg(url)) {
-                errors['image'] = 'Preview Image is required.'
+                errors['image'] = 'Preview Image is required and should end in end in .png, .jpg, or .jpeg'
             }
             if(imageURL1.length && !checkImg(imageURL1)) errors['image1'] = 'Image URL must end in .png, .jpg, or .jpeg'
             if(imageURL2.length && !checkImg(imageURL2)) errors['image2'] = 'Image URL must end in .png, .jpg, or .jpeg'
@@ -102,6 +102,9 @@ const CreateSpotForm = () => {
                 <form onSubmit={handleSubmit}>
                     <div>
                         <h2>Where's your place located?</h2>
+                        <p>Guests will only get your exact
+                            address once they booked a reservation.
+                        </p>
                         <label>
                             Country
                             <input
@@ -119,7 +122,7 @@ const CreateSpotForm = () => {
                         <label>
                             Street Adress
                             <input
-                                placeholder="Address"
+                                placeholder="Street Address"
                                 required
                                 type="text"
                                 value={streetAdress}
