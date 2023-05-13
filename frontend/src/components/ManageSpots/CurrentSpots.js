@@ -44,7 +44,7 @@ const CurrentSopts = () => {
                         <NavLink to={`/spots/${spot.id}`}>
 
                             <div>
-                                {spot.previewImage}
+                                <img src={spot.previewImage} />
                             </div>
                             <div>
                                 {spot.id}

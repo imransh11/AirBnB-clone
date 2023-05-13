@@ -4,7 +4,7 @@ function SpotImage({imgDetail}){
     console.log(imgDetail, '-------------------')
     return (
         <>
-        {imgDetail.url}
+        <img src={imgDetail.url} />
         </>
     )
 }

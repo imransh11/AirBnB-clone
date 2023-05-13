@@ -76,7 +76,7 @@ const SpotDetails = () => {
                                         </p>}
                             </div>
                         </div>
-                        <button>Reserve</button>
+                        <button onClick={() => {return alert('Feature coming soon')}}>Reserve</button>
                     </div>
                     {
                         (sessionUser.user) &&
@@ -91,6 +91,17 @@ const SpotDetails = () => {
                             }
                         </div>
                     }
+
+                    <div>
+                    {spotClicked.avgStarRating}
+                    {
+                        <div>
+                            {spotClicked.numReviews === 0 ? <div>New <div>Be the firt to post a review!</div></div> : <p>
+                            {spotClicked.numReviews > 1 ? <b>#{spotClicked.numReviews} reviews</b> : <b>#{spotClicked.numReviews} review</b>}
+                            </p>}
+                        </div>
+                    }
+                    </div>
                     {
                         spotReviews &&
 
@@ -105,15 +116,11 @@ const SpotDetails = () => {
                                 </div>
 
                                 {sessionUser.user &&
-                                // <div>
-                                //     {
 
                                         (sessionUser.user.id === rev.userId)?
                                         <div>
                                             <DeleteReviewModal reviewId ={rev.id}/>
                                         </div> : <div></div>
-                                //     }
-                                // </div>
                                 }
                             </div>
                         ))}
