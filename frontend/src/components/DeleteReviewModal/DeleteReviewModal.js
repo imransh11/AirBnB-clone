@@ -36,7 +36,7 @@ export default function DeleteReviewModal ({reviewId}) {
                                 Yes (Delete Review)
                             </button>
                             <button onClick={toggleModal}>
-                                No (Keep Spot)
+                                No (Keep Review)
                             </button>
                         </div>
                     </div>

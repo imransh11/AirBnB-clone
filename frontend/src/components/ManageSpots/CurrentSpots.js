@@ -27,7 +27,7 @@ const CurrentSopts = () => {
             <p>loading...</p>
             )
         }
-        console.log(spotsArr, 'test--------')
+        // console.log(spotsArr, 'test--------')
     return (
         <>
             {!spotsArr.length ? <div>
@@ -47,11 +47,13 @@ const CurrentSopts = () => {
                                 <img src={spot.previewImage} />
                             </div>
                             <div>
-                                {spot.id}
-                                {spot.city}
+
+                                {spot.city}, {}
                                 {spot.state}
                                 <div>
-                                    <b>{spot.avgRating}</b>
+                                    {!spot.avgRating ? <div>New</div> : <div>
+                                    <b>{spot.avgRating.toFixed(1)}</b>
+                                        </div>}
                                 </div>
                                 <b>${spot.price}</b>night
                             </div>

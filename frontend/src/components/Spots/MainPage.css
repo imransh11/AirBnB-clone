@@ -1,0 +1,36 @@
+.main-page-outside-container {
+    display: grid;
+    background-color: red;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+      ".";
+  }
+
+  .main-page-inside-container {
+    justify-self: center;
+    /* border: 2px solid green; */
+    padding: 15px;
+    grid-gap: 0;
+    display: grid;
+    width: 290px;
+    height: 330px;
+    grid-auto-columns: 1fr;
+    grid-template-rows: 300px 50px 50px ;
+    gap: 0px 0px;
+    grid-template-areas:
+      "main-page-image"
+      "main-page-location-rating"
+      "main-page-price";
+  }
+  .main-page-location-rating { grid-area: main-page-location-rating;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    }
+  .main-page-price { grid-area: main-page-price; }
+  .main-page-image { grid-area: main-page-image;
+                    width: 290px;
+                    height: 270px;
+                    }

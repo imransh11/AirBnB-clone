@@ -69,10 +69,12 @@ const SpotDetails = () => {
                     </div>
                     <div>
                         <p> <b>${spotClicked.price}</b> night </p>
-                        <div> {spotClicked.avgStarRating}
+                        <div>
                             <div>
                                     {spotClicked.numReviews === 0 ? <p>New</p> : <p>
-                                        {spotClicked.numReviews > 1 ? <b>#{spotClicked.numReviews} reviews</b> : <b>#{spotClicked.numReviews} review</b>}
+                                        {spotClicked.numReviews > 1 ? <div>
+                                            <b>#{spotClicked.numReviews} · reviews</b>{spotClicked.avgStarRating.toFixed(1)}</div> : <div>
+                                                <b>#{spotClicked.numReviews} · review</b>{spotClicked.avgStarRating.toFixed(1)}</div>}
                                         </p>}
                             </div>
                         </div>
@@ -93,14 +95,11 @@ const SpotDetails = () => {
                     }
 
                     <div>
-                    {spotClicked.avgStarRating}
-                    {
-                        <div>
-                            {spotClicked.numReviews === 0 ? <div>New <div>Be the firt to post a review!</div></div> : <p>
-                            {spotClicked.numReviews > 1 ? <b>#{spotClicked.numReviews} reviews</b> : <b>#{spotClicked.numReviews} review</b>}
-                            </p>}
-                        </div>
-                    }
+                    {spotClicked.numReviews === 0 ? <div>New <p>Be the first to post a review!</p></div> : <p>
+                                        {spotClicked.numReviews > 1 ? <div>
+                                            <b>#{spotClicked.numReviews} · reviews</b>{spotClicked.avgStarRating.toFixed(1)}</div> : <div>
+                                                <b>#{spotClicked.numReviews} · review</b>{spotClicked.avgStarRating.toFixed(1)}</div>}
+                                        </p>}
                     </div>
                     {
                         spotReviews &&

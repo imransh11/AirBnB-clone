@@ -85,7 +85,7 @@ const UpdateSpot = ({spot}) => {
         spot = await dispatch(updateSpot(payload))
         await dispatch(spotDetail(spot.id))
 
-        console.log(spot, 'UPDATEDSpot----------')
+        // console.log(spot, 'UPDATEDSpot----------')
         if(spot){
             history.push(`/spots/${spot.id}`)
         }

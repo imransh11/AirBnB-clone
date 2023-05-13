@@ -2,11 +2,12 @@ import { useDispatch, useSelector} from "react-redux"
 import { getAllSpots } from "../../store/spots";
 import { useEffect } from "react";
 import { NavLink } from "react-router-dom";
+import "./MainPage.css"
 
 const Spots = () => {
     const dispatch = useDispatch();
     const spotList = useSelector((state) => Object.values(state.spots))
-    console.log(spotList, 'spotList---')
+    // console.log(spotList, 'spotList---')
 
 
     useEffect(() => {
@@ -16,16 +17,20 @@ const Spots = () => {
     return (
         <>
         <h1>Spots</h1>
-        <div>
+        <div className="main-page-outside-container">
             {spotList.map((spot) => (
-                <div key={spot.id}>
+                <div key={spot.id} className="main-page-inside-container">
                     <NavLink key={spot.id} to={`/spots/${spot.id}`}>
-                    <p>{spot.id}</p>
-                    <img src={spot.previewImage} />
-                    <div>{spot.city}</div>
-                    <div>{spot.state}</div>
-                    <div>{spot.price} night</div>
-                    <div>{spot.avgRating}</div>
+
+                    <img src={spot.previewImage} className="main-page-image"/>
+                    <div className="main-page-location-rating">
+                        <div>{spot.city}, {}
+                            {spot.state}
+                        </div>
+                        <div>{!spot.avgRating ? <div>New</div> : <div>
+                            {spot.avgRating.toFixed(1)}</div>}</div>
+                    </div>
+                    <div className="main-page-price">${spot.price} night</div>
                     </NavLink>
                 </div>
 

@@ -28,7 +28,7 @@ const CreateReviewForm = ({toggleModal}) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setErrors('')
-        console.log('test handle----------')
+        // console.log('test handle----------')
 
         const RevPayload = {
             spotId: StateSpot[0].id,
@@ -40,21 +40,21 @@ const CreateReviewForm = ({toggleModal}) => {
         let newReviewbySpotId = await dispatch(createReviewBySpotId(RevPayload))
         .catch(async (res) => {
             const data = await res.json();
-            console.log(data, data.message, 'outside if')
+            // console.log(data, data.message, 'outside if')
 
 
             if (data.message){
-                console.log(data.message, 'message-----------')
+                // console.log(data.message, 'message-----------')
                 setErrors(data.message)
-                console.log(errors, 'inside error')
+                // console.log(errors, 'inside error')
                 return
             }
-            console.log(errors, 'test------')
+            // console.log(errors, 'test------')
         })
-        console.log(newReviewbySpotId, errors, 'newReview in create rev form')
+        // console.log(newReviewbySpotId, errors, 'newReview in create rev form')
 
         await dispatch(spotDetail(RevPayload.spotId));
-        console.log(errors, 'out------------')
+        // console.log(errors, 'out------------')
         if(errors.message){
             toggleModal()
         }

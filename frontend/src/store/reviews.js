@@ -29,13 +29,13 @@ const DeleteReview = (reviewId) => {
 
 //thunk
 export const getReviewsBySpotId = (spotId) => async (dispatch) => {
-    console.log("INSIDE thunk")
+    // console.log("INSIDE thunk")
     const response = await fetch(`/api/spots/${spotId}/reviews`)
-    console.log(response, 'after FETCH to backend')
+    // console.log(response, 'after FETCH to backend')
 
     if(response.ok){
         const ReviewData = await response.json()
-        console.log(ReviewData, 'ReviewDaata')
+        // console.log(ReviewData, 'ReviewDaata')
 
         dispatch(loadReviews(ReviewData))
         return ReviewData
@@ -43,7 +43,7 @@ export const getReviewsBySpotId = (spotId) => async (dispatch) => {
 };
 
 export const createReviewBySpotId = (RevPayload) => async (dispatch) => {
-    console.log(RevPayload, 'INSIDE Create Review')
+    // console.log(RevPayload, 'INSIDE Create Review')
     const response = await csrfFetch(`/api/spots/${RevPayload.spotId}/reviews`,{
         method: "POST",
         headers: {
@@ -51,10 +51,10 @@ export const createReviewBySpotId = (RevPayload) => async (dispatch) => {
         },
         body: JSON.stringify(RevPayload)
     });
-    console.log(response, 'response from thunk create rev')
+    // console.log(response, 'response from thunk create rev')
     if(response.ok){
         const newCreatedReview = await response.json();
-        console.log(newCreatedReview, 'newRev thunk RES')
+        // console.log(newCreatedReview, 'newRev thunk RES')
         dispatch(newReview(newCreatedReview))
     } else {
         console.log(response, 'response from create rev else')
@@ -62,14 +62,14 @@ export const createReviewBySpotId = (RevPayload) => async (dispatch) => {
 }
 
 export const deleteReviewById = (reviewId) => async (dispatch) => {
-    console.log(reviewId,'IN delete rev thunk=-=-')
+    // console.log(reviewId,'IN delete rev thunk=-=-')
 
     const response = await csrfFetch(`/api/reviews/${reviewId}`, {
         method: "DELETE"
     });
     if(response.ok){
         const delData = await response.json;
-        console.log(delData, 'delData======')
+        // console.log(delData, 'delData======')
         dispatch(DeleteReview(reviewId))
     }
 
@@ -84,22 +84,22 @@ const reviewsReducer = (state = initialState, action) => {
         case GET_REVIEWS_BY_SPOTID: {
             const newState = {};
             const spotReviews = action.reviews.Reviews
-            console.log(spotReviews, 'reducer')
+            // console.log(spotReviews, 'reducer')
 
             spotReviews.forEach(review => newState[review.id] = review)
-            console.log(newState, 'newState')
+            // console.log(newState, 'newState')
             return newState
         };
         case CREATE_REVIEW: {
             const newState = {...state};
-            console.log(action.review, newState, 'action in State')
+            // console.log(action.review, newState, 'action in State')
             newState[action.review.id] = action.review
-            console.log(newState, 'after adding in state')
+            // console.log(newState, 'after adding in state')
             return newState
         };
         case DELETE_REVIEW: {
             const newState = {...state}
-            console.log(action.reviewId, 'del action in state')
+            // console.log(action.reviewId, 'del action in state')
             delete newState[action.reviewId]
             return newState
         }

@@ -1,7 +1,7 @@
 
 
 function SpotImage({imgDetail}){
-    console.log(imgDetail, '-------------------')
+    // console.log(imgDetail, '-------------------')
     return (
         <>
         <img src={imgDetail.url} />

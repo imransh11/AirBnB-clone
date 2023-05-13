@@ -11,10 +11,10 @@ const Updated = () => {
 
     const {spotId} = useParams()
     const spot = useSelector(state => state.spots[spotId])
-    console.log(spot, spotId, 'test---------------')
+    // console.log(spot, spotId, 'test---------------')
 
     useEffect(() => {
-        console.log('IN USEEFFECT-------UPDATE')
+        // console.log('IN USEEFFECT-------UPDATE')
         dispatch(spotDetail(spotId))
     }, [dispatch]);
 
