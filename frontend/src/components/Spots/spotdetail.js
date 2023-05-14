@@ -16,7 +16,7 @@ const SpotDetails = () => {
     const spotClicked = useSelector((state) => state.spots[spotId])
     const sessionUser = useSelector(state => state.session)
     const spotReviews = useSelector(state => Object.values(state.reviews))
-    // console.log(spotClicked,spotReviews, spotId, sessionUser,'spot----byID-----------')
+    console.log(spotClicked,spotReviews, spotId, sessionUser,'spot----byID-----------')
 
 
     useEffect(() => {
@@ -49,7 +49,10 @@ const SpotDetails = () => {
         let spotRevUserId = [] // ids of user who posted rev
         spotReviews.forEach((rev) => {
             spotRevUserId.push(rev.userId)
-        })
+        });
+
+        //rev date
+        const revDate = new Date ()
 
     // console.log(spotRevUserId ,'TEST--------------------')
     return (

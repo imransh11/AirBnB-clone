@@ -51,7 +51,7 @@ const CurrentSopts = () => {
                                 {spot.city}, {}
                                 {spot.state}
                                 <div>
-                                    {!spot.avgRating ? <div>New</div> : <div>
+                                    {!spot.avgRating ? <div><i class="fa-solid fa-star"></i>New</div> : <div>
                                     <b><i class="fa-solid fa-star"></i> {spot.avgRating.toFixed(1)}</b>
                                         </div>}
                                 </div>
