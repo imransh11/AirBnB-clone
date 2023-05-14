@@ -35,10 +35,10 @@ export default function Modal ({spotId}) {
                     <p>Are you sure want to remove this spot
                         from the listings?
                     </p>
-                    <button onClick={handleDelete}>
+                    <button onClick={handleDelete} style={{backgroundColor: 'red'}}>
                         Yes (Delete Spot)
                     </button>
-                    <button onClick={toggleModal}>
+                    <button onClick={toggleModal} style={{backgroundColor: 'darkgrey'}}>
                         No (Keep Spot)
                     </button>
 

@@ -1,3 +1,13 @@
 .hidden {
     display: none;
 }
+
+.navigation-container {  display: grid;
+    grid-template-columns: 2.2fr 0.3fr 0.1fr;
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      "Home create-new-spot dropdown";
+  }
+

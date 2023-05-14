@@ -9,22 +9,27 @@ function Navigation({ isLoaded }){
   // console.log(sessionUser, 'test session user')
 
   return (
-    <ul>
-      <li>
-        <NavLink exact to="/">Home</NavLink>
-      </li>
+
+    <>
+    <div className='navigation-container'>
+      <div className='' >
+        <NavLink exact to="/" style={{color: 'red'}}><i class="fa-brands fa-airbnb"></i></NavLink>
+      </div>
+
       {sessionUser ?
-      <li>
+      <div className=''>
         <NavLink to='/spots/new'>Create a New Spot</NavLink>
-      </li> : <div></div>
+      </div> : <div></div>
       }
 
       {isLoaded && (
-        <li>
+        <div className=''>
           <ProfileButton user={sessionUser} />
-        </li>
-      )}
-    </ul>
+        </div>
+        )}
+    </div>
+    </>
+
   );
 }
 

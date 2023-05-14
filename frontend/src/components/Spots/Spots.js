@@ -27,8 +27,8 @@ const Spots = () => {
                         <div>{spot.city}, {}
                             {spot.state}
                         </div>
-                        <div>{!spot.avgRating ? <div>New</div> : <div>
-                            {spot.avgRating.toFixed(1)}</div>}</div>
+                        <div>{!spot.avgRating ? <div>New <i class="fa-solid fa-star"></i></div> : <div>
+                            {spot.avgRating.toFixed(1)} <i class="fa-solid fa-star"></i></div>}</div>
                     </div>
                     <div className="main-page-price">${spot.price} night</div>
                     </NavLink>

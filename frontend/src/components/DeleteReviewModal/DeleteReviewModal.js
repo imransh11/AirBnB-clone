@@ -32,10 +32,10 @@ export default function DeleteReviewModal ({reviewId}) {
                         <div id="modal-content">
                             <h3>Confirm Delete</h3>
                             <p>Are you sure you want to delete this review?</p>
-                            <button onClick={handleDelete}>
+                            <button onClick={handleDelete} style={{backgroundColor: 'red'}}>
                                 Yes (Delete Review)
                             </button>
-                            <button onClick={toggleModal}>
+                            <button onClick={toggleModal} style={{backgroundColor: 'darkgray'}}>
                                 No (Keep Review)
                             </button>
                         </div>
