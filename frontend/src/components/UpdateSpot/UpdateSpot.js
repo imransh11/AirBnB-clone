@@ -23,11 +23,7 @@ const UpdateSpot = ({spot}) => {
     const [url, setUrl] = useState(spot.SpotImages[0].url)
     const [imageURL1, SetImageURL1] = useState('')
 
-    // if(!spot.SpotImages[2]){
-    //     return;
-    // }else {
 
-    // }
 
     const [imageURL2, SetImageURL2] = useState(spot.imageURL2)
     const [imageURL3, SetImageURL3] = useState(spot.imageURL3)
@@ -237,7 +233,7 @@ const UpdateSpot = ({spot}) => {
                             }
                         </label>
                     </div>
-                    <div>
+                    {/* <div>
                         <label>
                             <h4>Liven up your spot with photos</h4>
                             <p>Submit a link to at least one photo to publish
@@ -299,7 +295,7 @@ const UpdateSpot = ({spot}) => {
                                 )
                             }
                         </label>
-                    </div>
+                    </div> */}
                     <div>
                         <button type="submit">Update Spot</button>
                     </div>

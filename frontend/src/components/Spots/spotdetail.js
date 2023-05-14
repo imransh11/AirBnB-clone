@@ -6,6 +6,7 @@ import { getReviewsBySpotId } from "../../store/reviews"
 import SpotImage from "./spotImage"
 import PostReviewModal from "../PostReviewModal/PostReviewModal"
 import DeleteReviewModal from "../DeleteReviewModal/DeleteReviewModal"
+// import './SpotDetail.css'
 
 
 const SpotDetails = () => {
@@ -53,79 +54,84 @@ const SpotDetails = () => {
     // console.log(spotRevUserId ,'TEST--------------------')
     return (
 
-        <div>
+        <div className="spotdetail-container">
             { spotClicked &&
                 <>
-                    <div>
+                    <div className="spotdetail-state-city-country">
                         <h1>{spotClicked.name}</h1>
                         <p>{spotClicked.city}, {spotClicked.state}, {spotClicked.country}</p>
                     </div>
-                    <div>{spotClicked.SpotImages.map((img) => (
+                    <div className="spotdetail-images">{spotClicked.SpotImages.map((img) => (
                         <SpotImage imgDetail={img}/>
                     ))}</div>
-                    <div>
-                        <h3>Hosted By {spotClicked.Owner.firstName} {spotClicked.Owner.lastName}</h3>
-                        <p>{spotClicked.description}</p>
-                    </div>
-                    <div>
-                        <p> <b>${spotClicked.price}</b> night </p>
-                        <div>
+                    <div className="spotdetail-details">
+                        <div className="">
+                            <h3>Hosted By {spotClicked.Owner.firstName} {spotClicked.Owner.lastName}</h3>
+                            <p>{spotClicked.description}</p>
+                        </div>
+                        <div className="">
+                            <p> <b>${spotClicked.price}</b> night </p>
                             <div>
-                                    {spotClicked.numReviews === 0 ? <p><i class="fa-solid fa-star"></i>New</p> : <p>
-                                        {spotClicked.numReviews > 1 ? <div>
-                                            <i class="fa-solid fa-star"></i>{spotClicked.avgStarRating.toFixed(1)} · <b>#{spotClicked.numReviews} reviews</b></div> : <div>
-                                            <i class="fa-solid fa-star"></i>{spotClicked.avgStarRating.toFixed(1)} · <b>#{spotClicked.numReviews} review</b></div>}
-                                        </p>}
+                                <div>
+                                        {spotClicked.numReviews === 0 ? <p><i class="fa-solid fa-star"></i>New</p> : <p>
+                                            {spotClicked.numReviews > 1 ? <div>
+                                                <i class="fa-solid fa-star"></i>{spotClicked.avgStarRating.toFixed(1)} · <b>#{spotClicked.numReviews} reviews</b></div> : <div>
+                                                <i class="fa-solid fa-star"></i>{spotClicked.avgStarRating.toFixed(1)} · <b>#{spotClicked.numReviews} review</b></div>}
+                                            </p>}
+                                </div>
                             </div>
+                            <button onClick={() => {return alert('Feature coming soon')}}>Reserve</button>
                         </div>
-                        <button onClick={() => {return alert('Feature coming soon')}}>Reserve</button>
                     </div>
-                    {
-                        (sessionUser.user) &&
-                        <div>
+                    <div className="spotdetail-reviews">
 
-                            {
-                                (sessionUser.user.id !== spotClicked.ownerId) &&
-                                !(spotRevUserId.includes(sessionUser.user.id))?
-                                <div>
-                                    <PostReviewModal />
-                                </div> : <div></div>
-                            }
-                        </div>
-                    }
+                        {
+                            (sessionUser.user) &&
+                            <div>
 
-                    <div>
-                    {spotClicked.numReviews === 0 ? <div><i class="fa-solid fa-star"></i>New <p>Be the first to post a review!</p></div> : <p>
-                                        {spotClicked.numReviews > 1 ? <div>
-                                            <i class="fa-solid fa-star"></i>{spotClicked.avgStarRating.toFixed(1)} · <b>#{spotClicked.numReviews} reviews</b></div> : <div>
-                                            <i class="fa-solid fa-star"></i>{spotClicked.avgStarRating.toFixed(1)} ·  <b>#{spotClicked.numReviews} review </b></div>}
-                                        </p>}
-                    </div>
-                    {
-                        spotReviews &&
-
-                    <div>
-                        {spotReviews.map((rev) => (
-                            <div key={rev.id}>
-                                <div>
-                                    {!rev.User ? <p>loading...</p> : <b>{rev.User.firstName}</b>}
-                                </div>
-                                <div>
-                                {rev.review}
-                                </div>
-
-                                {sessionUser.user &&
-
-                                        (sessionUser.user.id === rev.userId)?
-                                        <div>
-                                            <DeleteReviewModal reviewId ={rev.id}/>
-                                        </div> : <div></div>
+                                {
+                                    (sessionUser.user.id !== spotClicked.ownerId) &&
+                                    !(spotRevUserId.includes(sessionUser.user.id))?
+                                    <div>
+                                        <PostReviewModal />
+                                    </div> : <div></div>
                                 }
                             </div>
-                        ))}
+                        }
 
+                        <div>
+                        {spotClicked.numReviews === 0 ? <div><i class="fa-solid fa-star"></i>New <p>Be the first to post a review!</p></div> : <p>
+                                            {spotClicked.numReviews > 1 ? <div>
+                                                <i class="fa-solid fa-star"></i>{spotClicked.avgStarRating.toFixed(1)} · <b>#{spotClicked.numReviews} reviews</b></div> : <div>
+                                                <i class="fa-solid fa-star"></i>{spotClicked.avgStarRating.toFixed(1)} ·  <b>#{spotClicked.numReviews} review </b></div>}
+                                            </p>}
+                        </div>
+                        {
+                            spotReviews &&
+
+                        <div>
+                            {spotReviews.map((rev) => (
+                                <div key={rev.id}>
+                                    <div>
+                                        {!rev.User ? <p>loading...</p> : <b>{rev.User.firstName}</b>}
+                                    </div>
+                                    <div>
+                                    {rev.review}
+                                    </div>
+
+                                    {sessionUser.user &&
+
+                                            (sessionUser.user.id === rev.userId)?
+                                            <div>
+                                                <DeleteReviewModal reviewId ={rev.id}/>
+                                            </div> : <div></div>
+                                    }
+                                </div>
+                            ))}
+
+                        </div>
+                        }
                     </div>
-                    }
 
                 </>
                 }
