@@ -20,6 +20,7 @@ const Spots = () => {
         <div className="main-page-outside-container">
             {spotList.map((spot) => (
                 <div key={spot.id} className="main-page-inside-container">
+                    <span className="main-page-tooltip">{spot.name}</span>
                     <NavLink key={spot.id} to={`/spots/${spot.id}`}>
 
                     <img src={spot.previewImage} className="main-page-image"/>

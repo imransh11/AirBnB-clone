@@ -9,6 +9,7 @@
   }
 
   .main-page-inside-container {
+    /* position: relative; */
     justify-self: center;
     /* border: 2px solid green; */
     padding: 15px;
@@ -34,3 +35,20 @@
                     width: 290px;
                     height: 270px;
                     }
+.main-page-tooltip {
+    position: absolute;
+    bottom: 0.5;
+    right: 0.5;
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+    opacity: 0.5;
+}
+
+.main-page-inside-container:hover .main-page-tooltip {
+    visibility: visible;
+}
