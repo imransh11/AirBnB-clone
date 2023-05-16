@@ -1,6 +1,6 @@
 .main-page-outside-container {
     display: grid;
-    background-color: red;
+    /* background-color: red; */
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     grid-template-rows: 1fr;
     gap: 0px 0px;
@@ -46,7 +46,7 @@
     text-align: center;
     padding: 5px 0;
     border-radius: 6px;
-    opacity: 0.5;
+    opacity: 0.8;
 }
 
 .main-page-inside-container:hover .main-page-tooltip {
