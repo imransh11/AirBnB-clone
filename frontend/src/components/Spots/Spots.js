@@ -21,20 +21,23 @@ const Spots = () => {
             {spotList.map((spot) => (
                 <div key={spot.id} className="main-page-inside-container">
                     <span className="main-page-tooltip">{spot.name}</span>
-                    <NavLink key={spot.id} to={`/spots/${spot.id}`}>
-
-                    <img src={spot.previewImage} className="main-page-image"/>
-                    <div className="main-page-location-rating">
-                        <div>{spot.city}, {}
-                            {spot.state}
+                    <div className="main-page-spot">
+                        <NavLink key={spot.id} to={`/spots/${spot.id}`}>
+                            <div>
+                                <img src={spot.previewImage} className="main-page-image"/>
+                            </div>
+                        <div className="main-page-location-rating">
+                            <div className="cityName">{spot.city}, {}
+                                {spot.state}
+                            </div>
+                            <div className="">{!spot.avgRating ? <div className=""><i class="fa-solid fa-star"></i> New </div> : 
+                                <div>
+                                <i class="fa-solid fa-star"></i> {spot.avgRating.toFixed(1)} </div>}</div>
                         </div>
-                        <div>{!spot.avgRating ? <div><i class="fa-solid fa-star"></i> New </div> : <div>
-                            <i class="fa-solid fa-star"></i> {spot.avgRating.toFixed(1)} </div>}</div>
+                        <div className="main-page-price">${spot.price} night</div>
+                        </NavLink>
                     </div>
-                    <div className="main-page-price">${spot.price} night</div>
-                    </NavLink>
                 </div>
-
             ))}
         </div>
         </>

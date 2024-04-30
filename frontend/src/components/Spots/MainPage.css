@@ -1,17 +1,17 @@
 .main-page-outside-container {
     display: grid;
-    /* background-color: red; */
+    background-color: red;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     grid-template-rows: 1fr;
     gap: 0px 0px;
     grid-template-areas:
-      ".";
-  }
+    ".";
+}
 
-  .main-page-inside-container {
+.main-page-inside-container {
     /* position: relative; */
     justify-self: center;
-    /* border: 2px solid green; */
+    border: 2px solid green;
     padding: 15px;
     grid-gap: 0;
     display: grid;
@@ -21,19 +21,23 @@
     grid-template-rows: 300px 50px 50px ;
     gap: 0px 0px;
     grid-template-areas:
-      "main-page-image"
-      "main-page-location-rating"
-      "main-page-price";
-  }
-  .main-page-location-rating { grid-area: main-page-location-rating;
+    "main-page-image"
+    "main-page-location-rating"
+    "main-page-price";
+}
+.main-page-location-rating { grid-area: main-page-location-rating;
+                    background-color: aqua;
+                    text-decoration: none;
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
                     }
-  .main-page-price { grid-area: main-page-price; }
-  .main-page-image { grid-area: main-page-image;
+.main-page-price { grid-area: main-page-price;
+                    }
+.main-page-image { grid-area: main-page-image;
                     width: 290px;
                     height: 270px;
+                    border-radius: 5%;
                     }
 .main-page-tooltip {
     position: absolute;
@@ -51,4 +55,7 @@
 
 .main-page-inside-container:hover .main-page-tooltip {
     visibility: visible;
+}
+a:link{
+    text-decoration: none;
 }
