@@ -26,18 +26,20 @@
     "main-page-price";
 }
 .main-page-location-rating { grid-area: main-page-location-rating;
-                    background-color: aqua;
+                    padding-top: 5px;
+                    /* background-color: aqua; */
                     text-decoration: none;
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
                     }
 .main-page-price { grid-area: main-page-price;
+                    display: flex;
                     }
 .main-page-image { grid-area: main-page-image;
                     width: 290px;
                     height: 270px;
-                    border-radius: 5%;
+                    border-radius: 15px;
                     }
 .main-page-tooltip {
     position: absolute;

@@ -34,7 +34,7 @@ const Spots = () => {
                                 <div>
                                 <i class="fa-solid fa-star"></i> {spot.avgRating.toFixed(1)} </div>}</div>
                         </div>
-                        <div className="main-page-price">${spot.price} night</div>
+                        <div className="main-page-price" style={{fontWeight: "bold"}}>${spot.price} &nbsp;<div style={{fontWeight: 'normal'}}>night</div></div>
                         </NavLink>
                     </div>
                 </div>
