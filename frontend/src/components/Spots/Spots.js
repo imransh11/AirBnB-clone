@@ -16,7 +16,6 @@ const Spots = () => {
 
     return (
         <>
-        <h1>Spots</h1>
         <div className="main-page-outside-container">
             {spotList.map((spot) => (
                 <div key={spot.id} className="main-page-inside-container">
