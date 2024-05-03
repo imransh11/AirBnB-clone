@@ -2,8 +2,11 @@
     display: none;
 }
 
-.navigation-container {  display: grid;
-    grid-template-columns: 2.2fr 0.3fr 0.1fr;
+.navigation-container {  
+    display: grid;
+    height: 50px;
+    background-color: rgb(13, 58, 58);
+    grid-template-columns: 2.2fr 0.3fr 0.15fr;
     grid-template-rows: 1fr;
     gap: 0px 0px;
     grid-auto-flow: row;
@@ -44,4 +47,26 @@ ul{
     background-color: #F7F7F7;
     transition-delay: 150ms;
     transition-property: background-color, color;
+}
+
+.profile-btn{
+    grid-area: dropdown;
+    background-color: aqua;
+    height: 100%;
+    align-content: center;
+}
+
+.profile-btn-btn{
+    height: 60%;
+    display: flex;
+    gap:5px;
+    align-items: center;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.profile-btn-btn:hover{
+    box-shadow: 2px 2px 2px 2px rgb(0 0 0 / 20%);
+    transition-delay: 150ms;
+    transition-property: box-shadow;
 }

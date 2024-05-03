@@ -18,7 +18,7 @@ function Navigation({ isLoaded }){
 
       {sessionUser ?
       <div className=''>
-        <NavLink to='/spots/new'>Create a New Spot</NavLink>
+        <NavLink to='/spots/new'>Airbnb your home</NavLink>
       </div> : <div></div>
       }
 
