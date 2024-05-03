@@ -85,11 +85,26 @@ ul{
 
 .logo{
     /* background-color: #F7F7F7; */
-    font-weight: 900;
+    font-weight: bolder;
+    font-size: large;
 }
 
 .airbnb-your-home{
     /* background-color: aqua; */
     align-content: center;
     font-weight: bold;
+}
+
+.user-drop-down{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 5px;
+}
+
+.user-drop-logout{
+    border-radius: 5px;
+    width: 100%;
+    cursor: pointer;
+    background-color: #ff6299;
+    color: white;
 }

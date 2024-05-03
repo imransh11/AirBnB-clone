@@ -14,7 +14,7 @@ function Navigation({ isLoaded }){
     <div className='navigation-container'>
       <div className='airbnb-logo' >
         <div className='logo'>
-          <NavLink exact to="/" style={{color: 'red'}}><i class="fa-brands fa-airbnb fa-2xl"></i></NavLink>
+          <NavLink exact to="/" style={{color: 'red'}}><i class="fa-brands fa-airbnb fa-2xl"></i> airbnb</NavLink>
         </div>
       </div>
 
