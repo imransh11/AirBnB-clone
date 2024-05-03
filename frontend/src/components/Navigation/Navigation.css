@@ -5,7 +5,12 @@
 .navigation-container {  
     display: grid;
     height: 50px;
-    background-color: rgb(13, 58, 58);
+    padding-bottom: 5px;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: #b0b0b0;
+    margin-bottom: 5px;
+    /* background-color: rgb(13, 58, 58); */
     grid-template-columns: 2.2fr 0.3fr 0.15fr;
     grid-template-rows: 1fr;
     gap: 0px 0px;
@@ -51,7 +56,7 @@ ul{
 
 .profile-btn{
     grid-area: dropdown;
-    background-color: aqua;
+    /* background-color: aqua; */
     height: 100%;
     align-content: center;
 }
@@ -69,4 +74,22 @@ ul{
     box-shadow: 2px 2px 2px 2px rgb(0 0 0 / 20%);
     transition-delay: 150ms;
     transition-property: box-shadow;
+}
+
+.airbnb-logo{
+    grid-area: Home;
+    /* background-color: aquamarine; */
+    padding-left: 15px;
+    align-content: center;
+}
+
+.logo{
+    /* background-color: #F7F7F7; */
+    font-weight: 900;
+}
+
+.airbnb-your-home{
+    /* background-color: aqua; */
+    align-content: center;
+    font-weight: bold;
 }
