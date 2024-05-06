@@ -16,7 +16,7 @@ const SpotDetails = () => {
     const spotClicked = useSelector((state) => state.spots[spotId])
     const sessionUser = useSelector(state => state.session)
     const spotReviews = useSelector(state => Object.values(state.reviews))
-    // console.log(spotClicked,spotReviews, spotId, sessionUser,'spot----byID-----------')
+    console.log(spotClicked,spotReviews, spotId, sessionUser,'spot----byID-----------')
 
 
     useEffect(() => {
@@ -84,7 +84,7 @@ const SpotDetails = () => {
                                 </div>
                             </div>
                             <div>
-                                {spotClicked.ownerId === sessionUser.user.id ?
+                                {spotClicked.ownerId === sessionUser.user?.id ?
                                 <div></div>
                                 :
                                 <div>
