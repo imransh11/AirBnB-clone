@@ -1,14 +1,50 @@
-.spotdetail-container {  display: grid;
-    grid-template-rows: 0.4fr 1.7fr 0.8fr 1.1fr;
-    grid-auto-columns: 1fr;
-    gap: 0px 0px;
-    grid-auto-flow: row;
-  }
+.spotdetail-images{
+  background-color: aqua;
+  display: grid; 
+  grid-auto-columns: 1fr; 
+  grid-template-columns: 1fr .6fr 0.6fr; 
+  grid-template-rows: 1fr 1fr; 
+  gap: 5px 5px; 
+  grid-template-areas: 
+    "first sec third"
+    "first forth fifth"; 
+}
 
-  .spotdetail-state-city-country { grid-area: auto / auto / auto / auto; }
 
-  .spotdetail-images { grid-row-start: auto; }
 
-  .spotdetail-details { grid-row-start: auto; }
+.pic0{
+  width: 500px;
+  height: 800px;
+}
+.picdiv0{
+  grid-area: first;
+}
+.picdiv1{
+  grid-area: sec;
+}
+.picdiv2{
+  grid-area: third;
+}
+.picdiv3{
+  grid-area: forth;
+}
+.picdiv4{
+  grid-area: fifth;
+}
+.pic1{
+  width: 300px;
+  height: 300px;
+}
+.pic2{
+  width: 300px;
+  height: 300px;
+}
+.pic3{
+  width: 300px;
+  height: 300px;
+}
+.pic4{
+  width: 300px;
+  height: 300px;
+}
 
-  .spotdetail-reviews { grid-area: 4 / 1 / 5 / 2; }

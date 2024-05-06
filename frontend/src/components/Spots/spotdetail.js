@@ -6,7 +6,7 @@ import { getReviewsBySpotId } from "../../store/reviews"
 import SpotImage from "./spotImage"
 import PostReviewModal from "../PostReviewModal/PostReviewModal"
 import DeleteReviewModal from "../DeleteReviewModal/DeleteReviewModal"
-// import './SpotDetail.css'
+import './SpotDetail.css'
 
 
 const SpotDetails = () => {
@@ -16,7 +16,7 @@ const SpotDetails = () => {
     const spotClicked = useSelector((state) => state.spots[spotId])
     const sessionUser = useSelector(state => state.session)
     const spotReviews = useSelector(state => Object.values(state.reviews))
-    // console.log(spotClicked,spotReviews, spotId, sessionUser,'spot----byID-----------')
+    console.log(spotClicked,spotReviews, spotId, sessionUser,'spot----byID-----------')
 
 
     useEffect(() => {
@@ -64,8 +64,9 @@ const SpotDetails = () => {
                         <h1>{spotClicked.name}</h1>
                         <p>{spotClicked.city}, {spotClicked.state}, {spotClicked.country}</p>
                     </div>
-                    <div className="spotdetail-images">{spotClicked.SpotImages.map((img) => (
-                        <SpotImage imgDetail={img}/>
+                    <div className="spotdetail-images">{spotClicked.SpotImages.map((img ,idx) => (
+                        // <SpotImage imgDetail={img}/>
+                        <div className={"picdiv"+ idx} key={idx}><img className={'pic'+ idx} src={img.url}/></div>
                     ))}</div>
                     <div className="spotdetail-details">
                         <div className="">
