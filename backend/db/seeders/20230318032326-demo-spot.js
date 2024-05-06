@@ -34,6 +34,42 @@ module.exports = {
         name: "App Academy",
         description: "Place where web developers are created",
         price: 1234
+      },
+      {
+        ownerId: 1,
+        address: "1234 Disney Lane",
+        city: "New York City",
+        state: "New York",
+        country: "United States of America",
+        lat: 37.7645358,
+        lng: -122.4730327,
+        name: "App Academy",
+        description: "Place where web developers are created",
+        price: 1234
+      },
+      {
+        ownerId: 2,
+        address: "1234 Disney Lane",
+        city: "New York City",
+        state: "New York",
+        country: "United States of America",
+        lat: 37.7645358,
+        lng: -122.4730327,
+        name: "App Academy",
+        description: "Place where web developers are created",
+        price: 1234
+      },
+      {
+        ownerId: 2,
+        address: "1234 Disney Lane",
+        city: "Houston",
+        state: "Taxes",
+        country: "United States of America",
+        lat: 37.7645358,
+        lng: -122.4730327,
+        name: "App Academy",
+        description: "Place where web developers are created",
+        price: 1234
       }
     ], {})
   },

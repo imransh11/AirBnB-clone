@@ -12,13 +12,15 @@ function Navigation({ isLoaded }){
 
     <>
     <div className='navigation-container'>
-      <div className='' >
-        <NavLink exact to="/" style={{color: 'red'}}><i class="fa-brands fa-airbnb"></i></NavLink>
+      <div className='airbnb-logo' >
+        <div className='logo'>
+          <NavLink exact to="/" style={{color: 'red'}}><i class="fa-brands fa-airbnb fa-2xl"></i> airbnb</NavLink>
+        </div>
       </div>
 
       {sessionUser ?
-      <div className=''>
-        <NavLink to='/spots/new'>Create a New Spot</NavLink>
+      <div className='airbnb-your-home'>
+        <NavLink to='/spots/new'>Airbnb your home</NavLink>
       </div> : <div></div>
       }
 

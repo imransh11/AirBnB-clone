@@ -5,10 +5,10 @@
     grid-template-rows: 1fr;
     gap: 0px 0px;
     grid-template-areas:
-      ".";
-  }
+    ".";
+}
 
-  .main-page-inside-container {
+.main-page-inside-container {
     /* position: relative; */
     justify-self: center;
     /* border: 2px solid green; */
@@ -21,24 +21,29 @@
     grid-template-rows: 300px 50px 50px ;
     gap: 0px 0px;
     grid-template-areas:
-      "main-page-image"
-      "main-page-location-rating"
-      "main-page-price";
-  }
-  .main-page-location-rating { grid-area: main-page-location-rating;
+    "main-page-image"
+    "main-page-location-rating"
+    "main-page-price";
+}
+.main-page-location-rating { grid-area: main-page-location-rating;
+                    padding-top: 5px;
+                    font-weight: bold;
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
                     }
-  .main-page-price { grid-area: main-page-price; }
-  .main-page-image { grid-area: main-page-image;
+.main-page-price { grid-area: main-page-price;
+                    display: flex;
+                    padding-top: 5px;
+                    }
+.main-page-image { grid-area: main-page-image;
                     width: 290px;
                     height: 270px;
+                    border-radius: 15px;
                     }
 .main-page-tooltip {
     position: absolute;
-    bottom: 0.5;
-    right: 0.5;
+    transform: translate(5%, 20%);
     visibility: hidden;
     width: 120px;
     background-color: black;
@@ -51,4 +56,12 @@
 
 .main-page-inside-container:hover .main-page-tooltip {
     visibility: visible;
+}
+a:link{
+    text-decoration: none;
+    color: black;
+}
+a:visited{
+    text-decoration: none;
+    color: black;
 }
