@@ -1,5 +1,5 @@
 .spotdetail-images{
-  background-color: aqua;
+  /* background-color: aqua; */
   display: grid; 
   grid-auto-columns: 1fr; 
   grid-template-columns: 1fr .6fr 0.6fr; 
@@ -13,8 +13,10 @@
 
 
 .pic0{
-  width: 500px;
-  height: 800px;
+  width: 700px;
+  height: 700px;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
 }
 .picdiv0{
   grid-area: first;
@@ -32,19 +34,25 @@
   grid-area: fifth;
 }
 .pic1{
-  width: 300px;
-  height: 300px;
+  width: 360px;
+  height: 340px;
 }
 .pic2{
-  width: 300px;
-  height: 300px;
+  width: 350px;
+  height: 340px;
+  border-top-right-radius: 15px;
 }
 .pic3{
-  width: 300px;
-  height: 300px;
+  width: 360px;
+  height: 345px;
 }
 .pic4{
-  width: 300px;
-  height: 300px;
+  width: 350px;
+  height: 345px;
+  border-bottom-right-radius: 15px;
 }
 
+.spotdetail-container{
+  padding-left: 15px;
+  padding-right: 15px;
+}
