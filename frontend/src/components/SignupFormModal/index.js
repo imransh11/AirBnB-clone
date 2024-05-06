@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import * as sessionActions from "../../store/session";
-// import "./SignupForm.css";
+import "./signup.css"
 
 function SignupFormModal() {
   const dispatch = useDispatch();
@@ -26,7 +26,7 @@ function SignupFormModal() {
     e.preventDefault();
     if (password === confirmPassword) {
       setErrors({});
-       return dispatch(
+      return dispatch(
         sessionActions.signup({
           email,
           username,
@@ -46,78 +46,139 @@ function SignupFormModal() {
         });
     }
     return setErrors({
-      confirmPassword: "Confirm Password field must be the same as the Password field"
+      confirmPassword: "Confirm Password field does not match the Password field"
     });
   };
 
   return (
     <>
-      <h1>Sign Up</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Email
-          <input
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </label>
-        {errors.email && <p>{errors.email}</p>}
-        <label>
-          Username
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
-        </label>
-        {errors.username && <p>{errors.username}</p>}
-        <label>
-          First Name
-          <input
-            type="text"
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
-            required
-          />
-        </label>
-        {errors.firstName && <p>{errors.firstName}</p>}
-        <label>
-          Last Name
-          <input
-            type="text"
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
-            required
-          />
-        </label>
-        {errors.lastName && <p>{errors.lastName}</p>}
-        <label>
-          Password
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </label>
-        {errors.password && <p>{errors.password}</p>}
-        <label>
-          Confirm Password
-          <input
-            type="password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            required
-          />
-        </label>
-        {errors.confirmPassword && (
-          <p>{errors.confirmPassword}</p>
-        )}
-        <button type="submit" disabled={checkStat()}>Sign Up</button>
-      </form>
+    <div className="sign-up-main">
+      <div className="sign-up-title">
+        <h1>Sign Up</h1>
+      </div>
+      <div className="sign-up-form">
+        <form onSubmit={handleSubmit}>
+          <div className="signupFormField">
+            <label>
+              <div className="sign-up-content">
+                <div className="sign-up-content-title">
+                  Email &nbsp;
+                </div>
+                <div className="">
+                  <input
+                    className="signupContentField"
+                    type="text"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                  />
+                </div>
+              </div>
+                {errors.email && <div style={{color: 'red'}}>{errors.email}</div>}
+            </label>
+          </div>
+          <div className="signupFormField">
+            <label>
+              <div className="sign-up-content">
+                <div className="sign-up-content-title">
+                  Username &nbsp;
+                </div>
+                <div>
+                  <input
+                    className="signupContentField"
+                    type="text"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    required
+                  />
+                </div>
+              </div>
+              {errors.username && <div style={{color: 'red'}}>{errors.username}</div>}
+            </label>
+          </div>
+          <div className="signupFormField">
+            <label>
+              <div className="sign-up-content">
+                <div className="sign-up-content-title">
+                  First Name &nbsp;
+                </div>
+                <div>
+                  <input
+                    className="signupContentField"
+                    type="text"
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
+                    required
+                  />
+                </div>
+              </div>
+              {errors.firstName && <div style={{color: 'red'}}>{errors.firstName}</div>}
+            </label>
+          </div>
+          <div className="signupFormField">
+            <label>
+              <div className="sign-up-content">
+                <div className="sign-up-content-title">
+                  Last Name &nbsp;
+                </div>
+                <div>
+                  <input
+                    className="signupContentField"
+                    type="text"
+                    value={lastName}
+                    onChange={(e) => setLastName(e.target.value)}
+                    required
+                  />
+                </div>
+              </div>
+              {errors.lastName && <div style={{color: 'red'}}>{errors.lastName}</div>}
+            </label>
+          </div>
+          <div className="signupFormField">
+            <label>
+              <div className="sign-up-content">
+                <div className="sign-up-content-title">
+                  Password &nbsp;
+                </div>
+                <div>
+                  <input
+                    className="signupContentField"
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                  />
+                </div>
+              </div>
+              {errors.password && <div>{errors.password}</div>}
+            </label>
+          </div>
+          <div className="signupFormField">
+            <label>
+              <div className="sign-up-content">
+                <div className="sign-up-content-title">
+                  Confirm Password &nbsp;
+                </div>
+                <div>
+                  <input
+                    className="signupContentField"
+                    type="password"
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    required
+                  />
+                </div>
+              </div>
+                {errors.confirmPassword && (
+                  <div style={{color: 'red'}}>{errors.confirmPassword}</div>
+                )}
+            </label>
+          </div>
+          <button className="signupFormSubmit-btn" type="submit" >Sign Up</button>
+          {/* disabled={checkStat()} */}
+        </form>
+      </div>
+    </div>
     </>
   );
 }

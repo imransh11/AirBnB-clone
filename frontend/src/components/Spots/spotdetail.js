@@ -83,7 +83,15 @@ const SpotDetails = () => {
                                             </p>}
                                 </div>
                             </div>
-                            <button onClick={() => {return alert('Feature coming soon')}}>Reserve</button>
+                            <div>
+                                {spotClicked.ownerId === sessionUser.user.id ?
+                                <div></div>
+                                :
+                                <div>
+                                    <button onClick={() => {return alert('Feature coming soon')}}>Reserve</button>
+                                </div>
+                                }
+                            </div>
                         </div>
                     </div>
                     <div className="spotdetail-reviews">

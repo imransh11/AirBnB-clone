@@ -42,39 +42,63 @@ function LoginFormModal() {
 
   return (
     <>
-      <h1>Log In</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          {errors ? <div>{errors.message}</div> : <div></div>}
-        </div>
-        <label>
-          Username or Email
-          <input
-            type="text"
-            placeholder="Username or Email"
-            value={credential}
-            onChange={(e) => setCredential(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Password
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </label>
-        {errors.credential && (
-          <p>{errors.credential}</p>
-        )}
-        <button type="submit" disabled={checkstat()}>Log In</button>
-      </form>
-      <div>
-        <button onClick={demo}>Demo User</button>
+    <div className="sign-up-main">
+      <div className="sign-up-title">
+        <h1>Log In</h1>
       </div>
+      <div className="sign-up-form">
+        <form onSubmit={handleSubmit}>
+          <div>
+            {errors ? <div>{errors.message}</div> : <div></div>}
+          </div>
+          <div className="signupFormField">
+            <label>
+              <div className="sign-up-content">
+                <div className="sign-up-content-title">
+                  Username or Email &nbsp;
+                </div>
+                <div>
+                  <input
+                    className="signupContentField"
+                    type="text"
+                    placeholder="Username or Email"
+                    value={credential}
+                    onChange={(e) => setCredential(e.target.value)}
+                    required
+                  />
+                </div>
+              </div>
+            </label>
+          </div>
+          <div className="signupFormField">
+            <label>
+              <div className="sign-up-content">
+                <div className="sign-up-content-title">
+                  Password &nbsp;
+                </div>
+                <div >
+                  <input
+                  className="signupContentField"
+                    type="password"
+                    placeholder="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                  />
+                </div>
+              </div>
+                {errors.credential && (
+                  <div style={{color: 'red'}}>{errors.credential}</div>
+                )}
+            </label>
+          </div>
+          <button className="signupFormSubmit-btn" type="submit" disabled={checkstat()}>Log In</button>
+        </form>
+        <div>
+          <button className="signupFormSubmit-btn" onClick={demo}>Demo User</button>
+        </div>
+      </div>
+    </div>
     </>
   );
 }
