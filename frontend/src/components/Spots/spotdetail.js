@@ -80,10 +80,10 @@ const SpotDetails = () => {
                             </div>
                             <div>
                                 <div>
-                                        {spotClicked.numReviews === 0 ? <p><i class="fa-solid fa-star" style={{color: 'yellow'}}></i> New</p> : <p>
+                                        {spotClicked.numReviews === 0 ? <p><i class="fa-solid fa-star" style={{color: '#f0b52b'}}></i> New</p> : <p>
                                             {spotClicked.numReviews > 1 ? <div>
-                                                <i class="fa-solid fa-star" style={{color: 'yellow'}}></i> {spotClicked.avgStarRating.toFixed(1)} · <b>{spotClicked.numReviews} reviews</b></div> : <div>
-                                                <i class="fa-solid fa-star" style={{color: 'yellow'}}></i> {spotClicked.avgStarRating.toFixed(1)} · <b>{spotClicked.numReviews} review</b></div>}
+                                                <i class="fa-solid fa-star" style={{color: '#f0b52b'}}></i> {spotClicked.avgStarRating.toFixed(1)} · <b>{spotClicked.numReviews} reviews</b></div> : <div>
+                                                <i class="fa-solid fa-star" style={{color: '#f0b52b'}}></i> {spotClicked.avgStarRating.toFixed(1)} · <b>{spotClicked.numReviews} review</b></div>}
                                             </p>}
                                 </div>
                                 <div>{spotClicked.description}</div>
@@ -123,10 +123,10 @@ const SpotDetails = () => {
                         }
 
                         <div className="spotReview-count">
-                        {spotClicked.numReviews === 0 ? <div><i class="fa-solid fa-star" style={{color: 'yellow'}}></i> New <p>Be the first to post a review!</p></div> : <p>
+                        {spotClicked.numReviews === 0 ? <div><i class="fa-solid fa-star" style={{color: '#f0b52b'}}></i> New <p>Be the first to post a review!</p></div> : <p>
                                             {spotClicked.numReviews > 1 ? <div>
-                                                <i class="fa-solid fa-star" style={{color: 'yellow'}}></i> {spotClicked.avgStarRating.toFixed(1)} · <b>{spotClicked.numReviews} reviews</b></div> : <div>
-                                                <i class="fa-solid fa-star" style={{color: 'yellow'}}></i> {spotClicked.avgStarRating.toFixed(1)} ·  <b>{spotClicked.numReviews} review </b></div>}
+                                                <i class="fa-solid fa-star" style={{color: '#f0b52b'}}></i> {spotClicked.avgStarRating.toFixed(1)} · <b>{spotClicked.numReviews} reviews</b></div> : <div>
+                                                <i class="fa-solid fa-star" style={{color: '#f0b52b'}}></i> {spotClicked.avgStarRating.toFixed(1)} ·  <b>{spotClicked.numReviews} review </b></div>}
                                             </p>}
                         </div>
                         {
@@ -134,12 +134,18 @@ const SpotDetails = () => {
 
                         <div>
                             {spotReviews.map((rev) => (
-                                <div key={rev.id}>
+                                <div key={rev.id} className="spotReview-body">
                                     <div>
-                                        {!rev.User ? <p>loading...</p> : <b>{rev.User.firstName}</b>}
+                                        {!rev.User ? <p>loading...</p> : <b><i class="fa-solid fa-circle-user fa-lg"></i> {rev.User.firstName}</b>}
                                     </div>
-                                    <div>
-                                    {rev.review}
+                                    <div className="spotReview-stars">
+                                        {
+                                            [...Array(rev.stars)].map((element, i) => (
+                                                <i class="fa-solid fa-star" style={{color: "#f0b52b"}} key={i}></i>
+                                            ))}
+                                    </div>
+                                    <div className="spotReview-comment">
+                                        {rev.review}
                                     </div>
 
                                     {sessionUser.user &&
