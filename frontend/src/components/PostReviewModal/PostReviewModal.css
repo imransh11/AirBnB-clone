@@ -22,3 +22,16 @@
     position: absolute;
     background-color: white;
   }
+
+  .reviewSubmit-btn{
+    /* height: 40px; */
+  }
+
+  .postReview-btn{
+    height: 40px;
+    width: 200px;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: #ff6299;
+    color: white;
+  }
