@@ -70,8 +70,15 @@
     "detail place"; 
 }
 
-.spotdetal-info{
+.spotdetail-info{
   grid-area: detail;
+  background-color: #b0b0b0;
+  border-radius: 10px;
+  margin-right: 20px;
+  padding-left: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px
 }
 
 .spotdetail-pricing{
@@ -104,4 +111,13 @@
 .spotdetail-reviews{
   border-top: 1px solid #b0b0b0;
   margin-top: 20px;
+}
+
+.spotdetail-reviews{
+  padding-top: 20px;
+}
+
+.spotReview-count{
+  background-color: aquamarine;
+  padding-top: 10px;
 }

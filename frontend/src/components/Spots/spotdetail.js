@@ -80,10 +80,10 @@ const SpotDetails = () => {
                             </div>
                             <div>
                                 <div>
-                                        {spotClicked.numReviews === 0 ? <p><i class="fa-solid fa-star"></i>New</p> : <p>
+                                        {spotClicked.numReviews === 0 ? <p><i class="fa-solid fa-star" style={{color: 'yellow'}}></i> New</p> : <p>
                                             {spotClicked.numReviews > 1 ? <div>
-                                                <i class="fa-solid fa-star"></i>{spotClicked.avgStarRating.toFixed(1)} · <b>{spotClicked.numReviews} reviews</b></div> : <div>
-                                                <i class="fa-solid fa-star"></i>{spotClicked.avgStarRating.toFixed(1)} · <b>{spotClicked.numReviews} review</b></div>}
+                                                <i class="fa-solid fa-star" style={{color: 'yellow'}}></i> {spotClicked.avgStarRating.toFixed(1)} · <b>{spotClicked.numReviews} reviews</b></div> : <div>
+                                                <i class="fa-solid fa-star" style={{color: 'yellow'}}></i> {spotClicked.avgStarRating.toFixed(1)} · <b>{spotClicked.numReviews} review</b></div>}
                                             </p>}
                                 </div>
                                 <div>{spotClicked.description}</div>
@@ -122,11 +122,11 @@ const SpotDetails = () => {
                             </div>
                         }
 
-                        <div>
-                        {spotClicked.numReviews === 0 ? <div><i class="fa-solid fa-star"></i>New <p>Be the first to post a review!</p></div> : <p>
+                        <div className="spotReview-count">
+                        {spotClicked.numReviews === 0 ? <div><i class="fa-solid fa-star" style={{color: 'yellow'}}></i> New <p>Be the first to post a review!</p></div> : <p>
                                             {spotClicked.numReviews > 1 ? <div>
-                                                <i class="fa-solid fa-star"></i>{spotClicked.avgStarRating.toFixed(1)} · <b>{spotClicked.numReviews} reviews</b></div> : <div>
-                                                <i class="fa-solid fa-star"></i>{spotClicked.avgStarRating.toFixed(1)} ·  <b>{spotClicked.numReviews} review </b></div>}
+                                                <i class="fa-solid fa-star" style={{color: 'yellow'}}></i> {spotClicked.avgStarRating.toFixed(1)} · <b>{spotClicked.numReviews} reviews</b></div> : <div>
+                                                <i class="fa-solid fa-star" style={{color: 'yellow'}}></i> {spotClicked.avgStarRating.toFixed(1)} ·  <b>{spotClicked.numReviews} review </b></div>}
                                             </p>}
                         </div>
                         {
