@@ -144,3 +144,9 @@
 .spotReview-stars{
   padding-top: 10px;
 }
+
+.spotReview-del{
+  padding-top: 5px;
+  display: flex;
+  justify-content: center;
+}

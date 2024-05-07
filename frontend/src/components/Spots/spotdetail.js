@@ -151,7 +151,7 @@ const SpotDetails = () => {
                                     {sessionUser.user &&
 
                                             (sessionUser.user.id === rev.userId)?
-                                            <div>
+                                            <div className="spotReview-del">
                                                 <DeleteReviewModal reviewId ={rev.id}/>
                                             </div> : <div></div>
                                     }
