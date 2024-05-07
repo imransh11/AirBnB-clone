@@ -1,6 +1,6 @@
 .spotdetail-images{
   /* background-color: aqua; */
-  height: 700px;
+  min-height: 600px;
   padding-top: 30px;
   display: grid; 
   grid-auto-columns: 1fr; 
@@ -36,7 +36,7 @@
   grid-area: fifth;
 }
 .pic1{
-  width: 90%;
+  width: 95%;
   height: 90%;
 }
 .pic2{
@@ -45,7 +45,7 @@
   border-top-right-radius: 15px;
 }
 .pic3{
-  width: 90%;
+  width: 95%;
   height: 80%;
 }
 .pic4{
@@ -57,4 +57,50 @@
 .spotdetail-container{
   padding-left: 15px;
   padding-right: 15px;
+}
+
+.spotdetail-details{
+  /* background-color: aquamarine; */
+  display: grid; 
+  grid-auto-columns: 1fr; 
+  grid-template-columns: 1fr 1fr; 
+  grid-template-rows: 1fr; 
+  gap: 0px 0px; 
+  grid-template-areas: 
+    "detail place"; 
+}
+
+.spotdetal-info{
+  grid-area: detail;
+}
+
+.spotdetail-pricing{
+  grid-area: place;
+  border: 1px solid rgb(221, 221, 221);
+  border-radius: 15px;
+  width: fit-content;
+  padding-top: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px
+}
+
+.spot-pricing-detail{
+  padding-bottom: 20px;
+}
+.reserve-btn{
+  height: 25px;
+  width: 80px;
+  border-radius: 10px;
+  background-color: #ff6299;
+  color: white;
+}
+
+.detail-manageSpot{
+  padding-top: 40%;
+}
+
+.spotdetail-reviews{
+  border-top: 1px solid #b0b0b0;
+  margin-top: 20px;
 }

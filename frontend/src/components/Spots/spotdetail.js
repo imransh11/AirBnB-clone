@@ -7,6 +7,7 @@ import SpotImage from "./spotImage"
 import PostReviewModal from "../PostReviewModal/PostReviewModal"
 import DeleteReviewModal from "../DeleteReviewModal/DeleteReviewModal"
 import './SpotDetail.css'
+import { NavLink } from "react-router-dom/cjs/react-router-dom.min"
 
 
 const SpotDetails = () => {
@@ -16,7 +17,7 @@ const SpotDetails = () => {
     const spotClicked = useSelector((state) => state.spots[spotId])
     const sessionUser = useSelector(state => state.session)
     const spotReviews = useSelector(state => Object.values(state.reviews))
-    // console.log(spotClicked,spotReviews, spotId, sessionUser,'spot----byID-----------')
+    console.log(spotClicked,spotReviews, spotId, sessionUser,'spot----byID-----------')
 
 
     useEffect(() => {
@@ -63,18 +64,20 @@ const SpotDetails = () => {
                     <div className="spotdetail-state-city-country">
                         <h1>{spotClicked.name}</h1>
                         <p>{spotClicked.city}, {spotClicked.state}, {spotClicked.country}</p>
-                    </div>
-                    <div className="spotdetail-images">{spotClicked.SpotImages.map((img ,idx) => (
+                        </div>
+                        <div className="spotdetail-images">{spotClicked.SpotImages.map((img ,idx) => (
                         // <SpotImage imgDetail={img}/>
                         <div className={"picdiv"+ idx} key={idx}><img className={'pic'+ idx} src={img.url}/></div>
-                    ))}</div>
+                        ))}
+                    </div>
                     <div className="spotdetail-details">
-                        <div className="">
-                            <h3>Hosted By {spotClicked.Owner.firstName} {spotClicked.Owner.lastName}</h3>
-                            <p>{spotClicked.description}</p>
-                        </div>
-                        <div className="">
-                            <p> <b>${spotClicked.price}</b> night </p>
+                        <div className="spotdetail-info">
+                            <div className="">
+                                <div style={{fontWeight: 'bold'}}>Hosted By {spotClicked.Owner.firstName} {spotClicked.Owner.lastName}</div>
+                                <div>
+                                    {spotClicked.address} {spotClicked.city}, {spotClicked.state}
+                                </div>
+                            </div>
                             <div>
                                 <div>
                                         {spotClicked.numReviews === 0 ? <p><i class="fa-solid fa-star"></i>New</p> : <p>
@@ -83,17 +86,25 @@ const SpotDetails = () => {
                                                 <i class="fa-solid fa-star"></i>{spotClicked.avgStarRating.toFixed(1)} · <b>{spotClicked.numReviews} review</b></div>}
                                             </p>}
                                 </div>
+                                <div>{spotClicked.description}</div>
                             </div>
-                            <div>
+                        </div>
+                            <div className="spotdetail-pricing">
                                 {spotClicked.ownerId === sessionUser.user?.id ?
-                                <div></div>
+                                <div className="detail-manageSpot">
+                                    <NavLink to='/spots/current'>Manage Spot</NavLink>
+                                </div>
                                 :
-                                <div>
-                                    <button onClick={() => {return alert('Feature coming soon')}}>Reserve</button>
+                                <div className="spot-pricing">
+                                    <div className="spot-pricing-detail">
+                                        <b>${spotClicked.price}</b> night
+                                    </div>
+                                    <div>
+                                        <button className="reserve-btn" onClick={() => {return alert('Feature coming soon')}}>Reserve</button>
+                                    </div>
                                 </div>
                                 }
                             </div>
-                        </div>
                     </div>
                     <div className="spotdetail-reviews">
 
