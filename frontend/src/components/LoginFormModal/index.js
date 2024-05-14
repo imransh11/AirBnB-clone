@@ -49,7 +49,7 @@ function LoginFormModal() {
       <div className="sign-up-form">
         <form onSubmit={handleSubmit}>
           <div>
-            {errors ? <div style={{color: 'red'}}>{errors.message}</div> : <div></div>}
+            {errors ? <div style={{color: 'red', fontWeight: 'bold'}}>{errors.message}</div> : <div></div>}
           </div>
           <div className="signupFormField">
             <label>
@@ -92,7 +92,7 @@ function LoginFormModal() {
                 )}
             </label>
           </div>
-          <button className="signupFormSubmit-btn" type="submit" disabled={checkstat()}>Log In</button>
+          <button className="signupFormSubmit-btn" type="submit">Log In</button>
         </form>
         <div>
           <button className="signupFormSubmit-btn" onClick={demo}>Demo User</button>
