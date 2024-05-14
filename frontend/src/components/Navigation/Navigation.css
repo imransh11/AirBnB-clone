@@ -49,9 +49,10 @@ ul{
 }
 
 .sign-in-main:hover{
-    background-color: #F7F7F7;
+    background-color: #ff6299;
+    color: white;
     transition-delay: 150ms;
-    transition-property: background-color, color;
+    transition-property: background-color, color, color;
 }
 
 .profile-btn{

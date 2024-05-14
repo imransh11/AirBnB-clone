@@ -2,6 +2,7 @@ import { useState } from "react";
 import React from "react";
 import { useDispatch } from "react-redux";
 import { deleteReviewById } from "../../store/reviews";
+import './DeleteReviewModal.css'
 
 
 
@@ -22,7 +23,7 @@ export default function DeleteReviewModal ({reviewId}) {
 
     return (
         <>
-            <button onClick={toggleModal}>
+            <button className="deleteReview-btn" onClick={toggleModal}>
                 Delete
             </button>
 

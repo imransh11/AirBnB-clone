@@ -22,3 +22,20 @@
     position: absolute;
     background-color: white;
   }
+
+  .deleteReview-btn{
+    height: 30px;
+    width: 100px;
+    border-radius: 15px;
+    justify-content: center;
+    align-content: center;
+    background-color: #ff6299;
+    color: white;
+    cursor: pointer;
+  }
+
+  .deleteReview-btn:hover{
+    transition-property: background-color;
+    transition-delay: 150ms;
+    background-color: red;
+  }

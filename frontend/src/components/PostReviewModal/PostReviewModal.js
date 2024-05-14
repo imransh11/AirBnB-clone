@@ -16,7 +16,7 @@ export default function PostReviewModal () {
 
     return (
         <>
-            <button onClick={toggleModal}>
+            <button className="postReview-btn" onClick={toggleModal}>
                 Post Your Review
             </button>
 

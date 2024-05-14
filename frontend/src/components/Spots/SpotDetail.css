@@ -1,14 +1,152 @@
-.spotdetail-container {  display: grid;
-    grid-template-rows: 0.4fr 1.7fr 0.8fr 1.1fr;
-    grid-auto-columns: 1fr;
-    gap: 0px 0px;
-    grid-auto-flow: row;
-  }
+.spotdetail-images{
+  /* background-color: aqua; */
+  min-height: 600px;
+  padding-top: 30px;
+  display: grid; 
+  grid-auto-columns: 1fr; 
+  grid-template-columns: 1fr .6fr 0.6fr; 
+  grid-template-rows: 1fr 1fr; 
+  gap: 5px 5px; 
+  grid-template-areas: 
+    "first sec third"
+    "first forth fifth"; 
+}
 
-  .spotdetail-state-city-country { grid-area: auto / auto / auto / auto; }
 
-  .spotdetail-images { grid-row-start: auto; }
 
-  .spotdetail-details { grid-row-start: auto; }
+.pic0{
+  width: 100%;
+  height: 90%;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+}
+.picdiv0{
+  grid-area: first;
+}
+.picdiv1{
+  grid-area: sec;
+}
+.picdiv2{
+  grid-area: third;
+}
+.picdiv3{
+  grid-area: forth;
+}
+.picdiv4{
+  grid-area: fifth;
+}
+.pic1{
+  width: 95%;
+  height: 90%;
+}
+.pic2{
+  width: 90%;
+  height: 90%;
+  border-top-right-radius: 15px;
+}
+.pic3{
+  width: 95%;
+  height: 80%;
+}
+.pic4{
+  width: 90%;
+  height: 80%;
+  border-bottom-right-radius: 15px;
+}
 
-  .spotdetail-reviews { grid-area: 4 / 1 / 5 / 2; }
+.spotdetail-container{
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.spotdetail-details{
+  /* background-color: aquamarine; */
+  display: grid; 
+  grid-auto-columns: 1fr; 
+  grid-template-columns: 1fr 1fr; 
+  grid-template-rows: 1fr; 
+  gap: 0px 0px; 
+  grid-template-areas: 
+    "detail place"; 
+}
+
+.spotdetail-info{
+  grid-area: detail;
+  /* background-color: #e0e0e0; */
+  border: 1px solid rgb(221, 221, 221);
+  border-radius: 10px;
+  margin-right: 20px;
+  padding-left: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px
+}
+
+.spotdetail-pricing{
+  grid-area: place;
+  border: 1px solid rgb(221, 221, 221);
+  border-radius: 15px;
+  width: fit-content;
+  padding-top: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px
+}
+
+.spot-pricing-detail{
+  padding-bottom: 20px;
+}
+.reserve-btn{
+  height: 25px;
+  width: 80px;
+  border-radius: 10px;
+  background-color: #ff6299;
+  color: white;
+  cursor: pointer;
+}
+
+.detail-manageSpot{
+  padding-top: 40%;
+}
+
+.spotdetail-reviews{
+  border-top: 1px solid #b0b0b0;
+  margin-top: 20px;
+}
+
+.spotdetail-reviews{
+  padding-top: 20px;
+}
+
+.spotReview-count{
+  /* background-color: aquamarine; */
+  padding-top: 10px;
+}
+
+.spotReview-body{
+  /* background-color: rgb(122, 122, 218); */
+  border: 1px solid rgb(221, 221, 221);
+  border-radius: 15px;
+  width: fit-content;
+  padding-top: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px
+}
+
+.spotReview-comment{
+  padding-top: 10px;
+  padding-bottom: 5px;
+}
+
+.spotReview-stars{
+  padding-top: 10px;
+}
+
+.spotReview-del{
+  padding-top: 5px;
+  display: flex;
+  justify-content: center;
+}
