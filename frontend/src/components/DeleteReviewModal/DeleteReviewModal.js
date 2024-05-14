@@ -31,7 +31,7 @@ export default function DeleteReviewModal ({reviewId}) {
                     <div id="modal" className="delete-modal">
                         <div id="modal-background" onClick={toggleModal}></div>
                         <div id="modal-content" className="delete-modal">
-                            <h3>Confirm Delete</h3>
+                            <h3 className="del-Title">Confirm Delete</h3>
                             <p>Are you sure you want to delete this review?</p>
                             <button onClick={handleDelete} className="delReview-btn">
                                 Delete
