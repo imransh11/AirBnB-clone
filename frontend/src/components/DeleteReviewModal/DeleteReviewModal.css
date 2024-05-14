@@ -39,3 +39,38 @@
     transition-delay: 150ms;
     background-color: red;
   }
+
+  .delete-modal{
+    border-radius: 5px;
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-bottom: 10px;
+  }
+
+  h3{
+    border-bottom: solid #b0b0b0;
+  }
+
+  .delReview-btn{
+    width: 100px;
+    margin-right: 10px;
+    border-radius: 5px;
+    color: white;
+    background-color: #ff6299;
+    cursor: pointer;
+  }
+
+  .delReview-btn:hover{
+    transition-property: background-color;
+    transition-delay: 150ms;
+    background-color: red;
+  }
+
+  .cancleRev-btn{
+    width: 100px;
+    margin-right: 10px;
+    border-radius: 5px;
+    color: white;
+    background-color: #ff6299;
+    cursor: pointer;
+  }

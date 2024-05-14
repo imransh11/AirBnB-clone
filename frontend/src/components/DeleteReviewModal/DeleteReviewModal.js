@@ -28,16 +28,16 @@ export default function DeleteReviewModal ({reviewId}) {
             </button>
 
                 {modal && (
-                    <div id="modal">
+                    <div id="modal" className="delete-modal">
                         <div id="modal-background" onClick={toggleModal}></div>
-                        <div id="modal-content">
+                        <div id="modal-content" className="delete-modal">
                             <h3>Confirm Delete</h3>
                             <p>Are you sure you want to delete this review?</p>
-                            <button onClick={handleDelete} style={{backgroundColor: 'red'}}>
-                                Yes (Delete Review)
+                            <button onClick={handleDelete} className="delReview-btn">
+                                Delete
                             </button>
-                            <button onClick={toggleModal} style={{backgroundColor: 'darkgray'}}>
-                                No (Keep Review)
+                            <button onClick={toggleModal} className="cancleRev-btn">
+                                Keep Review
                             </button>
                         </div>
                     </div>
