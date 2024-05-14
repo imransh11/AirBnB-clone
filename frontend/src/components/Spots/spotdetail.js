@@ -6,7 +6,8 @@ import { getReviewsBySpotId } from "../../store/reviews"
 import SpotImage from "./spotImage"
 import PostReviewModal from "../PostReviewModal/PostReviewModal"
 import DeleteReviewModal from "../DeleteReviewModal/DeleteReviewModal"
-// import './SpotDetail.css'
+import './SpotDetail.css'
+import { NavLink } from "react-router-dom/cjs/react-router-dom.min"
 
 
 const SpotDetails = () => {
@@ -63,36 +64,47 @@ const SpotDetails = () => {
                     <div className="spotdetail-state-city-country">
                         <h1>{spotClicked.name}</h1>
                         <p>{spotClicked.city}, {spotClicked.state}, {spotClicked.country}</p>
-                    </div>
-                    <div className="spotdetail-images">{spotClicked.SpotImages.map((img) => (
-                        <SpotImage imgDetail={img}/>
-                    ))}</div>
-                    <div className="spotdetail-details">
-                        <div className="">
-                            <h3>Hosted By {spotClicked.Owner.firstName} {spotClicked.Owner.lastName}</h3>
-                            <p>{spotClicked.description}</p>
                         </div>
-                        <div className="">
-                            <p> <b>${spotClicked.price}</b> night </p>
-                            <div>
+                        <div className="spotdetail-images">{spotClicked.SpotImages.map((img ,idx) => (
+                        // <SpotImage imgDetail={img}/>
+                        <div className={"picdiv"+ idx} key={idx}><img className={'pic'+ idx} src={img.url}/></div>
+                        ))}
+                    </div>
+                    <div className="spotdetail-details">
+                        <div className="spotdetail-info">
+                            <div className="">
+                                <div style={{fontWeight: 'bold'}}>Hosted By {spotClicked.Owner.firstName} {spotClicked.Owner.lastName}</div>
                                 <div>
-                                        {spotClicked.numReviews === 0 ? <p><i class="fa-solid fa-star"></i>New</p> : <p>
-                                            {spotClicked.numReviews > 1 ? <div>
-                                                <i class="fa-solid fa-star"></i>{spotClicked.avgStarRating.toFixed(1)} · <b>{spotClicked.numReviews} reviews</b></div> : <div>
-                                                <i class="fa-solid fa-star"></i>{spotClicked.avgStarRating.toFixed(1)} · <b>{spotClicked.numReviews} review</b></div>}
-                                            </p>}
+                                    {spotClicked.address} {spotClicked.city}, {spotClicked.state}
                                 </div>
                             </div>
                             <div>
-                                {spotClicked.ownerId === sessionUser.user?.id ?
-                                <div></div>
-                                :
                                 <div>
-                                    <button onClick={() => {return alert('Feature coming soon')}}>Reserve</button>
+                                        {spotClicked.numReviews === 0 ? <p><i class="fa-solid fa-star" style={{color: '#f0b52b'}}></i> New</p> : <p>
+                                            {spotClicked.numReviews > 1 ? <div>
+                                                <i class="fa-solid fa-star" style={{color: '#f0b52b'}}></i> {spotClicked.avgStarRating.toFixed(1)} · <b>{spotClicked.numReviews} reviews</b></div> : <div>
+                                                <i class="fa-solid fa-star" style={{color: '#f0b52b'}}></i> {spotClicked.avgStarRating.toFixed(1)} · <b>{spotClicked.numReviews} review</b></div>}
+                                            </p>}
+                                </div>
+                                <div>{spotClicked.description}</div>
+                            </div>
+                        </div>
+                            <div className="spotdetail-pricing">
+                                {spotClicked.ownerId === sessionUser.user?.id ?
+                                <div className="detail-manageSpot">
+                                    <NavLink to='/spots/current'>Manage Spot</NavLink>
+                                </div>
+                                :
+                                <div className="spot-pricing">
+                                    <div className="spot-pricing-detail">
+                                        <b>${spotClicked.price}</b> night
+                                    </div>
+                                    <div>
+                                        <button className="reserve-btn" onClick={() => {return alert('Feature coming soon')}}>Reserve</button>
+                                    </div>
                                 </div>
                                 }
                             </div>
-                        </div>
                     </div>
                     <div className="spotdetail-reviews">
 
@@ -110,11 +122,11 @@ const SpotDetails = () => {
                             </div>
                         }
 
-                        <div>
-                        {spotClicked.numReviews === 0 ? <div><i class="fa-solid fa-star"></i>New <p>Be the first to post a review!</p></div> : <p>
+                        <div className="spotReview-count">
+                        {spotClicked.numReviews === 0 ? <div><i class="fa-solid fa-star" style={{color: '#f0b52b'}}></i> New <p>Be the first to post a review!</p></div> : <p>
                                             {spotClicked.numReviews > 1 ? <div>
-                                                <i class="fa-solid fa-star"></i>{spotClicked.avgStarRating.toFixed(1)} · <b>{spotClicked.numReviews} reviews</b></div> : <div>
-                                                <i class="fa-solid fa-star"></i>{spotClicked.avgStarRating.toFixed(1)} ·  <b>{spotClicked.numReviews} review </b></div>}
+                                                <i class="fa-solid fa-star" style={{color: '#f0b52b'}}></i> {spotClicked.avgStarRating.toFixed(1)} · <b>{spotClicked.numReviews} reviews</b></div> : <div>
+                                                <i class="fa-solid fa-star" style={{color: '#f0b52b'}}></i> {spotClicked.avgStarRating.toFixed(1)} ·  <b>{spotClicked.numReviews} review </b></div>}
                                             </p>}
                         </div>
                         {
@@ -122,18 +134,24 @@ const SpotDetails = () => {
 
                         <div>
                             {spotReviews.map((rev) => (
-                                <div key={rev.id}>
+                                <div key={rev.id} className="spotReview-body">
                                     <div>
-                                        {!rev.User ? <p>loading...</p> : <b>{rev.User.firstName}</b>}
+                                        {!rev.User ? <p>loading...</p> : <b><i class="fa-solid fa-circle-user fa-lg"></i> {rev.User.firstName}</b>}
                                     </div>
-                                    <div>
-                                    {rev.review}
+                                    <div className="spotReview-stars">
+                                        {
+                                            [...Array(rev.stars)].map((element, i) => (
+                                                <i class="fa-solid fa-star" style={{color: "#f0b52b"}} key={i}></i>
+                                            ))}
+                                    </div>
+                                    <div className="spotReview-comment">
+                                        {rev.review}
                                     </div>
 
                                     {sessionUser.user &&
 
                                             (sessionUser.user.id === rev.userId)?
-                                            <div>
+                                            <div className="spotReview-del">
                                                 <DeleteReviewModal reviewId ={rev.id}/>
                                             </div> : <div></div>
                                     }

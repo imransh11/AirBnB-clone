@@ -19,7 +19,7 @@ module.exports = {
         country: "United States of America",
         lat: 37.7645358,
         lng: -122.4730327,
-        name: "App Academy",
+        name: "Beach House",
         description: "Place where web developers are created",
         price: 123
       },
@@ -31,7 +31,7 @@ module.exports = {
         country: "United States of America",
         lat: 37.7645358,
         lng: -122.4730327,
-        name: "App Academy",
+        name: "Jungle House",
         description: "Place where web developers are created",
         price: 1234
       },
@@ -43,7 +43,7 @@ module.exports = {
         country: "United States of America",
         lat: 37.7645358,
         lng: -122.4730327,
-        name: "App Academy",
+        name: "Cabin in Woods",
         description: "Place where web developers are created",
         price: 1234
       },
@@ -55,7 +55,7 @@ module.exports = {
         country: "United States of America",
         lat: 37.7645358,
         lng: -122.4730327,
-        name: "App Academy",
+        name: "Nature House",
         description: "Place where web developers are created",
         price: 1234
       },
@@ -67,7 +67,7 @@ module.exports = {
         country: "United States of America",
         lat: 37.7645358,
         lng: -122.4730327,
-        name: "App Academy",
+        name: "Jungle House",
         description: "Place where web developers are created",
         price: 1234
       }

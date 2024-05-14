@@ -49,7 +49,7 @@ function LoginFormModal() {
       <div className="sign-up-form">
         <form onSubmit={handleSubmit}>
           <div>
-            {errors ? <div>{errors.message}</div> : <div></div>}
+            {errors ? <div style={{color: 'red'}}>{errors.message}</div> : <div></div>}
           </div>
           <div className="signupFormField">
             <label>

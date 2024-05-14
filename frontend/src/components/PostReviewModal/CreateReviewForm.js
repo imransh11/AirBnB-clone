@@ -95,7 +95,7 @@ const CreateReviewForm = ({toggleModal}) => {
                     </div>
 
                     <div>
-                        <button type="submit" disabled={checkStat()}
+                        <button className="reviewSubmit-btn" type="submit" disabled={checkStat()}
                         >Submit Your Review</button>
                     </div>
             </form>
