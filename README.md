@@ -3,6 +3,13 @@
 ## DATABASE Schema
 ![Schema](https://github.com/imransh11/AirBnB-clone/blob/main/Screenshot%202023-03-08%20182237.png)
 
+## Landing Page
+![LandingPage](https://github.com/imransh11/AirBnB-clone/blob/ManageSpotCss/airbnb-landing-page.png)
+
+## Features
+1. Users (logged in or logged out) can view the spots(landing page).
+   -logged in users can add their home to rent from the landing page.
+2. Users (logged in or logged out) can view the spots detail page.
 ## API Documentation
 
 ## USER AUTHENTICATION/AUTHORIZATION
