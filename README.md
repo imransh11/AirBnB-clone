@@ -11,8 +11,14 @@
    -logged in users can add their home to rent from the landing page.
 2. Users (logged in or logged out) can view the spots detail page.
 
-## Spot Detail Page
-![SpotDetail] ()
+![SpotDetail] (https://github.com/imransh11/AirBnB-clone/commit/e73431c9b69971148fdec462339c4e0e30250031)
+
+3. Users Logged In can add their home to Airbnb
+
+4. Users Logged In can Access the Manage Spot Page to update/delete
+  details.
+
+![ManageSpot]
 ## API Documentation
 
 ## USER AUTHENTICATION/AUTHORIZATION
