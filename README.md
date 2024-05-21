@@ -6,10 +6,24 @@
 ## Landing Page
 ![LandingPage](https://github.com/imransh11/AirBnB-clone/blob/ManageSpotCss/airbnb-landing-page.png)
 
+## Spot Create/Update Page
+![UpdatePage](https://github.com/imransh11/AirBnB-clone/blob/readmeUpdate/airbnb-updateSpot.png)
 ## Features
 1. Users (logged in or logged out) can view the spots(landing page).
    -logged in users can add their home to rent from the landing page.
 2. Users (logged in or logged out) can view the spots detail page.
+
+![SpotDetail](https://github.com/imransh11/AirBnB-clone/blob/readmeUpdate/airbnb-spot-detailPg.png)
+
+3. Users Logged In can add their home to Airbnb
+
+4. Users Logged In can Access the Manage Spot Page to update/delete
+  details.
+
+![ManageSpot](https://github.com/imransh11/AirBnB-clone/blob/readmeUpdate/airbnb-Manage-spot.png)
+
+5. Users Logged In can leave or delete a review for a Spot
+
 ## API Documentation
 
 ## USER AUTHENTICATION/AUTHORIZATION
