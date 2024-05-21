@@ -332,7 +332,7 @@ const UpdateSpot = ({spot}) => {
                                 </label>
                             </div> */}
                             <div>
-                                <button type="submit">Update Spot</button>
+                                <button className="createSpotBtn" type="submit">Update Spot</button>
                             </div>
                         </div>
                     </form>
