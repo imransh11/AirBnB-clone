@@ -10,6 +10,9 @@
 1. Users (logged in or logged out) can view the spots(landing page).
    -logged in users can add their home to rent from the landing page.
 2. Users (logged in or logged out) can view the spots detail page.
+
+## Spot Detail Page
+![SpotDetail] ()
 ## API Documentation
 
 ## USER AUTHENTICATION/AUTHORIZATION
