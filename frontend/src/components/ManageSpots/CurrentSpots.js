@@ -14,7 +14,7 @@ const CurrentSopts = () => {
 
     const spotsArr = useSelector(state => Object.values(state.spots))
     const userCurr = useSelector(state => state)
-    console.log(spotsArr, userCurr, 'currentSpots------')
+    // console.log(spotsArr, userCurr, 'currentSpots------')
     const history = useHistory()
 
 
