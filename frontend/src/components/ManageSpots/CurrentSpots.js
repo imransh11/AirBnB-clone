@@ -13,15 +13,16 @@ const CurrentSopts = () => {
     const dispatch = useDispatch()
 
     const spotsArr = useSelector(state => Object.values(state.spots))
-    // console.log(spotsArr, 'currentSpots------')
+    const userCurr = useSelector(state => state)
+    console.log(spotsArr, userCurr, 'currentSpots------')
     const history = useHistory()
 
 
 
     useEffect(() => {
         // console.log('in useEFFECT_-------')
-        dispatch(CurrentUserSpots())
-    }, [dispatch])
+        userCurr.session.user? dispatch(CurrentUserSpots()) : history.push('/')
+    }, [dispatch, userCurr.session.user])
 
     if(!spotsArr){
         return(
@@ -62,7 +63,7 @@ const CurrentSopts = () => {
                                             Description: {spot.description}
                                         </div>
                                         <div className="manageSpotInfo">
-                                            {!spot.avgRating ? <div><i class="fa-solid fa-star"></i>New</div> : <div>
+                                            {!spot.avgRating ? <div><i class="fa-solid fa-star"></i> New</div> : <div>
                                                 Rating:&nbsp;
                                             <b><i class="fa-solid fa-star"></i> {spot.avgRating.toFixed(1)}</b>
                                             </div>}
