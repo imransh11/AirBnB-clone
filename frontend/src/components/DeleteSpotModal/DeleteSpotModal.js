@@ -23,23 +23,23 @@ export default function Modal ({spotId}) {
     return (
         <>
             <button onClick={toggleModal}
-            className="">
-                Delete
+            className="spotDeleteBtn">
+                Delete Your Spot
             </button>
 
             {modal && (
                 <div id="modal">
                 <div id="modal-background" onClick={toggleModal}></div>
-                <div id="modal-content">
-                    <h2>Confirm Delete</h2>
+                <div id="modal-content" className="delete-modal">
+                    <h2 className="del-Title">Confirm Delete</h2>
                     <p>Are you sure want to remove this spot
                         from the listings?
                     </p>
-                    <button onClick={handleDelete} style={{backgroundColor: 'red'}}>
-                        Yes (Delete Spot)
+                    <button onClick={handleDelete} className="delReview-btn">
+                        Delete
                     </button>
-                    <button onClick={toggleModal} style={{backgroundColor: 'darkgrey'}}>
-                        No (Keep Spot)
+                    <button onClick={toggleModal} className="cancleRev-btn">
+                        Cancel
                     </button>
 
                 </div>
