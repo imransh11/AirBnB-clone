@@ -23,8 +23,8 @@ export default function Modal ({spotId}) {
     return (
         <>
             <button onClick={toggleModal}
-            className="">
-                Delete
+            className="spotDeleteBtn">
+                Delete Your Spot
             </button>
 
             {modal && (

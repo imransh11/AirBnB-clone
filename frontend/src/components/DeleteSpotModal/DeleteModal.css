@@ -22,3 +22,18 @@
     position: absolute;
     background-color: white;
   }
+
+  .spotDeleteBtn{
+    width: auto;
+    height: 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    background-color: #ff6299;
+  }
+
+  .spotDeleteBtn:hover{
+    transition-property: background-color;
+    transition-delay: 150ms;
+    background-color: red;
+  }

@@ -1,0 +1,44 @@
+.spotsManage{
+    /* background-color: bisque; */
+    border: 1px solid rgb(221, 221, 221);
+    border-radius: 15px;
+    display: grid; 
+    /* align-items: center; */
+    grid-auto-columns: 1fr; 
+    grid-template-columns: 1fr 1fr; 
+    grid-template-rows: 1fr; 
+    gap: 0px 0px; 
+    grid-template-areas: 
+    "pic detail"; 
+    margin-bottom: 30px;
+    margin-right: 20px;
+    margin-left: 20px;
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px
+}
+
+.manageSpotImage{
+    height: 300px;
+    width: 300px;
+    border-radius: 5px;
+}
+
+.manageSpotInfo{
+    padding-bottom: 5px;
+}
+
+.manageSpotBtns{
+    padding-top: 1.2%;
+}
+
+.manageSpotUpdateBtn{
+    width: auto;
+    height: 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    background-color: #ff6299;
+    margin-bottom: 10px;
+}
