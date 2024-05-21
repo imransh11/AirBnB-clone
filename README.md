@@ -18,7 +18,10 @@
 4. Users Logged In can Access the Manage Spot Page to update/delete
   details.
 
-![ManageSpot]
+![ManageSpot](https://github.com/imransh11/AirBnB-clone/blob/readmeUpdate/airbnb-Manage-spot.png)
+
+5. Users Logged In can leave a review for a Spot
+
 ## API Documentation
 
 ## USER AUTHENTICATION/AUTHORIZATION
