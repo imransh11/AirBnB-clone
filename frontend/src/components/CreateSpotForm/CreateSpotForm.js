@@ -358,7 +358,7 @@ const CreateSpotForm = () => {
                                 </label>
                             </div>
                             <div>
-                                <button type="submit">Create Spot</button>
+                                <button className="createSpotBtn" type="submit">Create Spot</button>
                             </div>
                         </div>
                     </form>
